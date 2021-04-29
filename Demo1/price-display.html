@@ -44,14 +44,18 @@
                 console.log('Detected: ', result);
             }
             var x=0, xOld=0, y=0, yOld=0;
+            var x2 = 0, y2 = 0;
             code = result.codeResult.code;
             result.boxes.forEach(function (box) {
                 xOld = x;
                 yOld = y;
                 x = Math.min(box[0][0], box[1][0], box[2][0], box[3][0]);
                 y = Math.min(box[0][1], box[1][1], box[2][1], box[3][1]);
-                if (Math.abs(x - xOld) > 120 || Math.abs(y - yOld) > 120) {
-                    //Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
+                x2 = Math.max(box[0][0], box[1][0], box[2][0], box[3][0]);
+                y2 = Math.max(box[0][1], box[1][1], box[2][1], box[3][1]);
+                console.log('Size: ', Math.abs(x-x2), Math.abs(y-y2));
+                if ((Math.abs(x - xOld) > 120 || Math.abs(y - yOld) > 120) && (Math.abs(x - x2) > 100 && Math.abs(y - y2) > 100)) {
+                    Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
                     drawingCtx.strokeStyle = 'red';
                     drawingCtx.fillStyle = 'red';
                     drawingCtx.font = '48px serif';
