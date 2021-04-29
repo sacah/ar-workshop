@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Demo 1</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+    <style>
+        .drawingBuffer {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div id="interactive" class="viewport"><video autoplay="true" preload="auto" src=""></video></div>
+
+    <script src="quagga.js" type="text/javascript"></script>
+    <script>
+        var tmr = null;
+        var code;
+        Quagga.init({
+            inputStream: {
+                name: 'Barcode',
+                type: 'LiveStream'
+            },
+            decoder: {
+                readers: ['code_39_reader']
+            }
+        }, (err) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            Quagga.start();
+        });
+
+        Quagga.onDetected(function(result) {
+            var drawingCtx = Quagga.canvas.ctx.overlay;
+            drawingCtx.clearRect(0, 0, 640, 480);
+            if (result.codeResult.code !== code) {
+                console.log('Detected: ', result);
+            }
+            var x=0, xOld=0, y=0, yOld=0;
+            code = result.codeResult.code;
+            result.boxes.forEach(function (box) {
+                xOld = x;
+                yOld = y;
+                x = Math.min(box[0][0], box[1][0], box[2][0], box[3][0]);
+                y = Math.min(box[0][1], box[1][1], box[2][1], box[3][1]);
+                if (Math.abs(x - xOld) > 120 || Math.abs(y - yOld) > 120) {
+                    //Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
+                    drawingCtx.strokeStyle = 'red';
+                    drawingCtx.fillStyle = 'red';
+                    drawingCtx.font = '48px serif';
+                    drawingCtx.fillText('Phone case $21', x, y);
+                }
+            });
+            clearTimeout(tmr);
+            tmr = setTimeout(() => {
+                drawingCtx.clearRect(0, 0, 640, 480);
+            }, 1000);
+        });
+    </script>
+  </body>
+</html>
