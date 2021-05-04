@@ -1,0 +1,22 @@
+{
+  "name": "ar-workshop",
+  "version": "1.0.0",
+  "description": "Uses barcode detection libray to find barcode and put Phone Case $21 over the barcode.\r Currently looks for Code 39 barcodes, we should send the code to an API and get title/price back that we then display and cache.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sacah/ar-workshop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sacah/ar-workshop/issues"
+  },
+  "homepage": "https://github.com/sacah/ar-workshop#readme",
+  "devDependencies": {
+    "static-server": "^2.2.1"
+  }
+}
