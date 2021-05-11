@@ -16,3 +16,9 @@ Click the 'Request payment' button to switch to that tab. When known people are 
 In addition, there is a 'friendAmount' object, with the key being the name you entered, in lower case.
 If the amount in this array is negative, the box around the friends face will be red and it will tell you how much they owe.
 This amount would populate from an API call in a real system.
+
+### Challenges:
+* Students need to figure out the optimum bestMatch.distance, trial and error of taking faces and matching faces
+* Implement multiple pictures of face to a better trained model
+* Improve the UI (HTML, CSS, little JS)
+* Improve the canvas drawing of recognised people, or money owned
