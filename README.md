@@ -1,10 +1,19 @@
 # Augmented Reality Workshop
 
-## Demo1
-Uses barcode detection libray to find barcode and put Phone Case $21 over the barcode.
-Currently looks for Code 39 barcodes, we should send the code to an API and get title/price back that we then display and cache.
+## Pre-work
+* Install Node v14+
+* Install VS Code
+* Download the ar-workshop (put new repo with no history in) to your laptop
+* npm i in ar-workshop folder
 
-## Demo2
+
+## Challenge 1
+Focus is on HTML/CSS to make the UI nice and accessible.
+
+## Challenge 2
+Focus is on the JavaScript of the app.
+
+## Overview of app
 Example of request payment function. Say you're at lunch with friends and want to send them all a payment request. Provided you'd already added your friends, you can just scan all their faces while they are at lunch to add them to a payment request.
 
 For this demo, first load the page, and in the 'Add Person' tab, type the persons name and email. Wait for that person to be the only person detected in the camera and press the 'Add' button.
@@ -17,8 +26,3 @@ In addition, there is a 'friendAmount' object, with the key being the name you e
 If the amount in this array is negative, the box around the friends face will be red and it will tell you how much they owe.
 This amount would populate from an API call in a real system.
 
-### Challenges:
-* Students need to figure out the optimum bestMatch.distance, trial and error of taking faces and matching faces
-* Implement multiple pictures of face to a better trained model
-* Improve the UI (HTML, CSS, little JS)
-* Improve the canvas drawing of recognised people, or money owned
