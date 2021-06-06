@@ -3,6 +3,7 @@
 ## Pre-work
 * Install Node v14+
 * Install VS Code
+* Install latest Chrome
 * Download the ar-workshop (put new repo with no history in) to your laptop
 * npm i in ar-workshop folder
 
@@ -25,4 +26,12 @@ Click the 'Request payment' button to switch to that tab. When known people are 
 In addition, there is a 'friendAmount' object, with the key being the name you entered, in lower case.
 If the amount in this array is negative, the box around the friends face will be red and it will tell you how much they owe.
 This amount would populate from an API call in a real system.
+
+## Setup
+Start static server
+```html
+ static-server
+```
+
+
 
