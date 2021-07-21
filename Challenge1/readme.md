@@ -1,22 +1,24 @@
 
 # Challenge 1 - HTML/CSS
 
-* HTML, overview
-* INPUTs, types and functionality of radios
-* LABELs, how they interact with INPUTs
-* CSS, overview
-* CSS, .class selector
-* CSS, tag selector
-* CSS, input[name='tab'] selector
-* CSS, > child selector
-* CSS, + sibling selector
-* CSS, input:checked selector
-* CSS, label:hover selector
-* CSS, display: flex
-* CSS, display: grid, grid-column
-* CSS, animation
-* Building tabs with label and checkbox
-* Making content area of tab show/hide with tabs
+- [Challenge 1 - HTML/CSS](#challenge-1---htmlcss)
+  - [HTML overview](#html-overview)
+  - [INPUTs](#inputs)
+    - [type="radio"](#typeradio)
+  - [LABELs](#labels)
+  - [CSS overview](#css-overview)
+  - [Class selector](#class-selector)
+  - [Tag selector](#tag-selector)
+  - [Attribute selector](#attribute-selector)
+  - [Child selector](#child-selector)
+  - [Adjacent sibling selector](#adjacent-sibling-selector)
+  - [Pseudo-class selector - :checked](#pseudo-class-selector---checked)
+  - [Pseudo-class selector - :hover](#pseudo-class-selector---hover)
+  - [Flexbox](#flexbox)
+  - [CSS Grid](#css-grid)
+  - [CSS animation](#css-animation)
+  - [Building tabs](#building-tabs)
+  - [Aim](#aim)
 
 ## HTML overview
 HTML (HyperText Markup Language) is used to structure and give meaning to content on web pages. Below is a simple example of a basic HTML file.
