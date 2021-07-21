@@ -2,7 +2,15 @@
 # Challenge 2 - JavaScript
 
 * JavaScipt overview
-* Initiate Javascript
+* Capture Video
+* Understanding face-api.js
+* Load Models
+* Setup Canvas and detect single face 
+* Add Face (Save face descripter data)
+* Add more faces
+* Make tabs work
+* Recognise  single  saved face
+* Recognise  multiple saved face
 
 
 ## JavaScipt overview
@@ -23,21 +31,19 @@ A JavaScript function is a block of code designed to perform a particular task.I
 </script>   
 ```
 
-## Browser APIs
+### Browser APIs
 Browser APIs are built into your web browser, ready-made sets of code building blocks that allow a developer to implement programs that would otherwise be hard or impossible to implement.In this workshop, we will be using
 
-The ```DOM (Document Object Model) API``` allows you to manipulate HTML and CSS, creating, removing and changing HTML, dynamically applying new styles to your page, etc. Every time you see a popup window appear on a page, or some new content displayed (as we saw above in our simple demo) for example, that's the DOM in action.
-The ```Canvas and WebGL APIs``` allow you to create animated 2D and 3D graphics. People are doing some amazing things using these web technologies —see Chrome Experiments and webglsamples.
-```Audio and Video APIs``` like HTMLMediaElement and WebRTC allow you to do really interesting things with multimedia, such as play audio and video right in a web page, or grab video from your web camera and display it on someone else's computer (try our simple Snapshot demo to get the idea).
+The ```DOM (Document Object Model) API``` allows you to manipulate HTML and CSS, creating, removing and changing HTML, dynamically applying new styles to your page, etc. Every time you see a popup window appear on a page, or some new content displayed, that's the DOM in action.
+The ```Canvas and WebGL APIs``` allow you to create animated 2D and 3D graphics. 
+```Audio and Video APIs``` like HTMLMediaElement and WebRTC allow you to do really interesting things with multimedia, such as play audio and video right in a web page, or grab video from your web camera and display it on someone else's computer.
 
-## Third party APIs 
-Third party APIs are not built into the browser by default, and you generally have to grab their code and information from somewhere on the Web. For example: Twitter API,Google Maps API  and the one we are using today is ```face.api```( JavaScript API for Face Recognition in the Browser with tensorflow.js).
+### Third party APIs 
+Third party APIs are not built into the browser by default, and you generally have to grab their code and information from somewhere on the Web. For example: Twitter API,Google Maps API  and the one we are using today is ```face.api```, JavaScript API for Face Recognition in the Browser with tensorflow.js( TensorFlow is used to create large-scale neural networks with many layers and mainly used for deep learning or machine learning problems).
 
-```html
-<script src="/face-api/face-api.min.js" type="text/javascript"></script>
-```
 
-### Capture video ( Camera on)
+
+## Capture video ( Camera on)
 A variable declared outside a function, becomes GLOBAL.
 Media Stream APIs
 The ``Navigator`` interface represents the state and the identity of the user agent. ```navigator``` object can be retrieved by read-only window ```navigator``` property.
@@ -56,7 +62,19 @@ function init() {
     });
 }
 ```
+```getElementById()```:  method returns the element that has the ID attribute with the specified value
+```setTimeout(function, delay)``` : Executes the function specified by function in delay milliseconds.
+```HAVE_ENOUGH_DATA ( value -4) ```: Enough data is available—and the download rate is high enough—that the media can be played through to the end without interruption.
 
+```html
+//uncomment setupCanvas()
+
+  function setupCanvas() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+       console.log("video ready to be used");  
+    } else setTimeout(setupCanvas, 100);
+  }
+```
 
 ### More ES6 featues
 ```Aync/await``` : ES6 recent additions , syntactic sugar on top of promises. An async function is a function that knows how to expect the possibility of the await keyword being used to invoke asynchronous code.
@@ -65,9 +83,12 @@ Invoking aysnc function returns a promise. Await can be put in front of any asyn
 Before ES2015, JavaScript had only two types of scope: Global Scope and Function Scope
 ```Let/Const``` has block scope, Variables declared inside a block {} cannot be accessed from outside the block
 
-### Understanding face-api.js
+## Understanding face-api.js
+
+--move later
 ```faceapi.detectAllFaces``` : To detect all face's bounding boxes of an input image/video
 Face-api.js implements multiple face detectors for different usecases.
+
 ```Face Detection```
 The most accurate face detector is a``` SSD (Single Shot Multibox Detector)```, which is basically a CNN based on MobileNet V1, with some additional box prediction layers stacked on top of the network( use regular convulations which is slower than depthwise seperable convolution)
 
@@ -80,13 +101,20 @@ face-api.js implements a simple CNN and  returns the 68 point face landmarks of 
 ```Face Recognition``` 
 Feed the extracted and aligned face images into the face recognition network. The network has been trained to learn to map the characteristics of a human face to a ```face descriptor``` (a feature vector with 128 values), which is also oftentimes referred to as face embeddings.
 
+
+--move later
 ```How comparison work```
 Face descriptor of each extracted face image and compare them with the face descriptors of the reference data. ```Euclidean distance``` is computed between two face descriptors and judge whether two faces are similar based on a threshold value (for 150 x 150 sized face images 0.6 is a good threshold value)
 
-```Load models```
+
+
+## Load models 
 Face-api provides different models but we will use face detection, face landmark and face recognition model for this workshop.
+Deep learning neural network models learn to map inputs to outputs given a training dataset of examples. The training process involves finding a set of weights in the network that proves to be good, or good enough, at solving the specific problem.
+ 
 
 ```html
+  <script src="/face-api/face-api.min.js" type="text/javascript"></script>
     //put async and load models in init function
      async function init() {
       await faceapi.loadSsdMobilenetv1Model('/face-api/');
@@ -94,44 +122,108 @@ Face-api provides different models but we will use face detection, face landmark
       await faceapi.loadFaceRecognitionModel('/face-api/');
       navigator.mediaDevices.getUserMedia({ audio: false, video: true, video: { width: 480, height: 360 }}).then((stream) => {
         video.srcObject = stream;
-        //setupCanvas();
-      });
+        setupCanvas();
+      }).catch(function(err) {
+          /* handle the error */
+          console.log("error in capturing video");
+      });;
     }
     
 ```
 
-### Setup Canvas and detect single face 
+## Setup Canvas and detect single face 
 Detect single face , return landmarks to face decriptor.
-```getElementById()```:  method returns the element that has the ID attribute with the specified value
-```setTimeout(function, delay)``` : Executes the function specified by function in delay milliseconds.
-```HAVE_ENOUGH_DATA ( value -4) ```: Enough data is available—and the download rate is high enough—that the media can be played through to the end without interruption.
-```requestAnimationFrame(callback)```: Tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint.
-As its async calls , let's put loader to wait for the response
-```html
-    var canvas = document.getElementById("canvas");
-    var singleFaceResultOnLoad;
 
-    function setupCanvas() {
+### detectSingleFace 
+The networks return the bounding boxes of the face, with the corresponding scores, e.g. the probability of each bounding box showing a face.
+
+
+```html
+  var canvas = document.getElementById("canvas");
+  var singleFaceResultOnLoad;
+  async function setupCanvas() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        singleFaceResultOnLoad = await faceapi.detectSingleFace(video);
+        faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
+        console.log(singleFaceResultOnLoad);
+      } else setTimeout(setupCanvas, 100);
+    } 
+```
+### Put loader
+```html
+<div id="loader"></div>
+    //show loader 
+    function showLoader(){
+      document.getElementById("loader").style.display ='block';
+    }
+     //hide  loader 
+    function hideLoader(){
+      document.getElementById("loader").style.display ='none';
+    }
+    
+Add  hideLoader() in setupCanvas(); 
+```
+### withFaceLandmarks() & drawFaceLandmarks
+Next, we want to align the bounding boxes, such that we can extract the images centered at the face for each box before passing them to the face recognition network, as this will make face recognition much more accurate!
+For that purpose face-api.js implements a simple CNN, which returns the 68 point face landmarks of a given face image:
+
+```html
+  async function setupCanvas() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks();
+        console.log(singleFaceResultOnLoad);
+        faceapi.draw.drawFaceLandmarks(canvas, singleFaceResultOnLoad);
+        hideLoader();
+      } else setTimeout(setupCanvas, 100);
+    } 
+
+    to further understand it more, we can get positions for 68 point face landmarks and draw boundaries for each
+
+    var context = canvas.getContext("2d");
+
+    async function setupCanvas() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks();
+        console.log(singleFaceResultOnLoad);
+        //faceapi.draw.drawFaceLandmarks(canvas, singleFaceResultOnLoad);
+        
+        const landmarks = singleFaceResultOnLoad.landmarks;
+
+        const jawOutline = landmarks.getJawOutline()
+        const nose = landmarks.getNose()
+        const mouth = landmarks.getMouth()
+        const leftEye = landmarks.getLeftEye()
+        const rightEye = landmarks.getRightEye()
+        const leftEyeBbrow = landmarks.getLeftEyeBrow()
+        const rightEyeBrow = landmarks.getRightEyeBrow()
+        console.log("jawOutline", jawOutline);
+        faceapi.draw.drawContour(context, jawOutline);
+        faceapi.draw.drawContour(context, leftEye);
+        hideLoader();
+
+      } else setTimeout(setupCanvas, 100);
+    } 
+        
+
+```
+### Face descriptor withFaceDescriptor()
+As we haven't saved any face data yet, so it won't be able to recognize now. But we need face descriptor of face to be saved  as reference data to compare later.  
+
+```html 
+    async function setupCanvas() {
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
         singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
+        console.log(singleFaceResultOnLoad);
         faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
         hideLoader();
       } else setTimeout(setupCanvas, 100);
     }
-    // uncomment setupCanvas();
-
-    //put loader 
-     function showLoader(){
-      document.getElementById("loader").style.display ='block';
-    }
-    function hideLoader(){
-      document.getElementById("loader").style.display ='none';
-    }
-
 ```
 
-### Add Person
+## Add Face (Save face descripter data)
 EventTarget.addEventListener() : The EventTarget method addEventListener() sets up a function that will be called whenever the specified event is delivered to the target.
+localStorage : The localStorage read-only property of the window interface allows you to access a Storage object for the Document's origin; the stored data is saved across browser sessions.
+
 ```html 
     document.getElementById('add').addEventListener('click', addPerson);
     const faces = {};
@@ -151,57 +243,137 @@ EventTarget.addEventListener() : The EventTarget method addEventListener() sets 
       return;
     }
 ```
+##  Add more faces
+ const faces = JSON.parse(localStorage.getItem('faces') || '{}');
 
-### Detect the already saved face 
+## Make tabs work 
+Add person - for adding face 
+Request payment - for recognising and asking for payment
+```html 
+var tab = "addPerson";
+document.getElementById('requestPaymentTab').addEventListener('click', changeTab);
+document.getElementById('addPersonTab').addEventListener('click', changeTab);
+function changeTab(ev) {
+      clearTimeout(setupCanvas);
+      if(ev.target.id == 'requestPaymentTab') {
+        tab ='requestPayment';
+      } else {
+        tab ='addPerson';
+      }
+      showLoader();
+      setupCanvas();
+    }
 
+  async function setupCanvas() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        if(tab === 'addPerson') {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
+          faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
+        } else if(tab === 'requestPayment' ) {
+            console.log("do something for requestPayment");
+        }
+        hideLoader();
+      } else setTimeout(setupCanvas, 100);
+    }
+
+```
+## Recognise  single  saved face
+```requestAnimationFrame(callback)```: Tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint.
+As its async calls , let's put loader to wait for the response
 ```html
-    //fetch data from localstorage 
-    const faces = JSON.parse(localStorage.getItem('faces') || '{}');
-
-    var context = canvas.getContext("2d");
-    
-    // change setCanvas
-    function setupCanvas() {
-        if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        requestAnimationFrame(renderFrame);
-       } else setTimeout(setupCanvas, 100);
+  async function setupCanvas() {
+    if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        if(tab === 'addPerson') {
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
+          console.log(singleFaceResultOnLoad);
+          faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
+        } else if(tab === 'requestPayment' ) {
+          requestAnimationFrame(renderFrame);
+        }
+        hideLoader();
+      } else setTimeout(setupCanvas, 100);
     }
 
     async function renderFrame() {
       await faceID();
     }
 
-     async function faceID() {
-      const faceDescriptors = [];
+  async function faceID() {
+      const savedFaceDescriptors = [];
+      const requestPeople = [];
+
       if (Object.keys(faces).length) {
         Object.keys(faces).forEach((face) => {
-          faceDescriptors.push(new faceapi.LabeledFaceDescriptors(face, [new Float32Array(faces[face].descriptors[0])]));
+          savedFaceDescriptors.push(new faceapi.LabeledFaceDescriptors(face, [new Float32Array(faces[face].descriptors[0])]));
         });
       }
       
-      let faceLandmarks = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors();
+      let fd =  await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
 
-      if (faceDescriptors.length) {
-        const faceMatcher = new faceapi.FaceMatcher(faceDescriptors);
+      if (savedFaceDescriptors.length) {
+        const maxDescriptorDistance = 0.6;
+        const faceMatcher = new faceapi.FaceMatcher(savedFaceDescriptors, maxDescriptorDistance);
         context.clearRect(0, 0, canvas.width, canvas.height);
-        faceLandmarks.forEach((fd) => {
+        if(fd){
           const bestMatch = faceMatcher.findBestMatch(fd.descriptor);
           const opts = {
             label: bestMatch.label,
             lineWidth: 2
           };
-          if (bestMatch.distance <= 0.5) {
-            const drawBox = new faceapi.draw.DrawBox(fd.alignedRect.box, opts);
-            drawBox.draw(canvas);
-            if (document.getElementById('requestPaymentTab').checked) {
-              if (!requestPeople.includes(bestMatch.label)) requestPeople.push(bestMatch.label);
-              document.getElementById('to').value = requestPeople.join(', ');
-            }
-          } else {
-            faceapi.draw.drawFaceLandmarks(canvas, fd.landmarks);
+          const drawBox = new faceapi.draw.DrawBox(fd.alignedRect.box, opts);
+          drawBox.draw(canvas);
+          if(bestMatch.label!='unknown') {
+            document.getElementById('to').value = bestMatch.label;
           }
-        });
+        }
+       
+        hideLoader();
       }
       requestAnimationFrame(renderFrame);
     }
 ```
+## Recognise  multiple saved face
+
+```html
+   async function faceID() {
+      const savedFaceDescriptors = [];
+      const requestPeople = [];
+
+      if (Object.keys(faces).length) {
+        Object.keys(faces).forEach((face) => {
+          savedFaceDescriptors.push(new faceapi.LabeledFaceDescriptors(face, [new Float32Array(faces[face].descriptors[0])]));
+        });
+      }
+      
+      let detectedFaceDescripters = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors();
+      if(detectedFaceDescripters.length) {
+        const dims = faceapi.matchDimensions(canvas, video, true);
+        detectedFaceDescripters = faceapi.resizeResults(detectedFaceDescripters,dims);
+      }
+     
+      if (savedFaceDescriptors.length) {
+        const maxDescriptorDistance = 0.6;
+        const faceMatcher = new faceapi.FaceMatcher(savedFaceDescriptors, maxDescriptorDistance);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        detectedFaceDescripters.forEach((fd) => {
+          const bestMatch = faceMatcher.findBestMatch(fd.descriptor);
+          const opts = {
+            label: bestMatch.label,
+            lineWidth: 2
+          };
+          const drawBox = new faceapi.draw.DrawBox(fd.alignedRect.box, opts);
+            drawBox.draw(canvas);
+            if (!requestPeople.includes(bestMatch.label) && bestMatch.label!='unknown') requestPeople.push(bestMatch.label);
+            document.getElementById('to').value = requestPeople.join(', ');
+        });
+        hideLoader();
+      }
+      requestAnimationFrame(renderFrame);
+    }
+```
+
+
+
