@@ -6,7 +6,7 @@
 * LABELs, how they interact with INPUTs
 * CSS, overview
 * CSS, .class selector
-* CSS, label selector
+* CSS, tag selector
 * CSS, input[name='tab'] selector
 * CSS, > child selector
 * CSS, + sibling selector
@@ -15,6 +15,8 @@
 * CSS, display: flex
 * CSS, display: grid, grid-column
 * CSS, animation
+* Building tabs with label and checkbox
+* Making content area of tab show/hide with tabs
 
 ## HTML overview
 HTML (HyperText Markup Language) is used to structure and give meaning to content on web pages. Below is a simple example of a basic HTML file.
@@ -55,7 +57,7 @@ Here are a few common values for the attribute type
 See these in action at https://codepen.io/sacah/pen/RwpQdPN
 
 ### type="radio"
-In the above example of 2 radio inputs, notice how the name attribute has the same value. This forms a group, and only allows 1 to be selected at a time. If you click on one ofthe radio inputs above, you'll notice it becomes selected. If you then click on the other radio input, the previous one becomes unselected and the new one becomes selected. This is important behaviour that we can use later.
+In the above example of 2 radio inputs, notice how the name attribute has the same value. This forms a group, and only allows 1 to be selected at a time. If you click on one of the radio inputs above, you'll notice it becomes selected. If you then click on the other radio input, the previous one becomes unselected and the new one becomes selected. This is important behaviour that we can use later.
 
 
 ## LABELs
@@ -93,3 +95,202 @@ In the above example, we've said find any HTML ```input``` or ```label``` tags, 
 We will cover different selectors and some properties below, though to really dig deeper into CSS, look at [CSS - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/CSS).
 
 ## Class selector
+The most commonly used CSS selector is the Class selector. This allows you to single out 1 or many elements to apply a certain style to them.
+
+You first use the ```class``` attribute on the element, like
+```HTML
+<div class="full-border">Hello world</div>
+```
+Now the ```div``` is marked with the class of ```full-border```, in CSS we can style it like
+```CSS
+.full-border { 
+  border: solid red 2px;
+}
+```
+This means any HTML element that has a class attribute containing ```full-border``` will have a big red border applied to it, provided that the HTML element supports borders, some elements don't.
+
+See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
+
+## Tag selector
+As was mentioned above, you can also target HTML tags in CSS. If we have a few ```label``` tags on the page, and want them all to have red borders, we can do this in CSS like
+```CSS
+label { 
+  border: solid red 2px;
+}
+```
+Now all HTML ```label``` tags will have a red border, provided no other style overwrites it.
+
+See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
+
+## Attribute selector
+You can also target attributes defined on HTML tags, with the following HTML code
+```HTML
+<input type="text">
+```
+You could target any ```input``` tag with ```type="text"``` via CSS like
+```CSS
+input[type="text"] {
+  border: solid red 2px;
+}
+```
+
+See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
+
+## Child selector
+A child refers to a HTML tag that is nested directly inside another HTML tag, so in this example the ```input``` is the child of the ```div```
+```HTML
+<div>
+  <input>
+</div>
+```
+
+It does not include children nested within children though, think of them as grandchildren. In this example, only the ```span``` is a child of ```div```, ```input``` is a child of ```span```, and a grandchild of ```div```.
+```HTML
+<div>
+  <span>
+    <input>
+  </span>
+</div>
+```
+
+In CSS, we can target children like this
+```CSS
+div > span {
+  border: solid red 2px;
+}
+```
+
+This will make any ```span``` that is a child off a ```div``` have a red border.
+
+See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
+
+## Adjacent sibling selector
+A sibling refers to a HTML tag that has the same parent, an adjacent sibling is a HTML tag that also immediately follows the reference element.
+
+In this example, ```input``` is an adjacent sibling of ```label```
+```HTML
+<div>
+  <label>Name</label>
+  <input>
+</div>
+```
+
+We can target this in CSS like
+```CSS
+label + input {
+  border: solid red 2px;
+}
+```
+
+See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
+
+## Pseudo-class selector - :checked
+Pseudo-classes are set based on the elements state. Inputs with a ```type``` of radio, or checkbox, will have a ```:checked``` pseudo-class applied to it when it is selected. Radios and Checkboxes can't have a border applied to them though, so lets use the pseudo-class in combination with a sibling selector to add a border to a label.
+```HTML
+<input type="radio" name="rgroup" id="radio1">
+<label for="radio1">Radio 1</label>
+<input type="radio" name="rgroup" id="radio2">
+<label for="radio2">Radio 2</label>
+```
+And CSS
+```CSS
+input:checked + label {
+  border: solid red 2px;
+}
+```
+
+See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
+
+## Pseudo-class selector - :hover
+If your mouse is over an element, it will have a ```:hover``` pseudo-class applied to it.
+```HTML
+<span>Hello</span>
+<span>World</span>
+```
+And CSS
+```CSS
+span:hover {
+  border: solid red 2px;
+}
+```
+
+See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
+
+## Flexbox
+Flexbox is a one dimensional layout model, allowing you to specify things in either a row or column, compared to something like CSS Grid, which we'll cover later, which is a two dimensional model, as you can do rows and columns at the same time.
+
+Head over to https://codepen.io/sacah/pen/YzVQYwZ?editors=1100 and follow the instructions to learn the basics of Flexbox.
+
+Flexbox is hugely capable, we've only covered a very small amount of it's capabilities. If you'd like to learn more about it, here is a great page https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+## CSS Grid
+We just talked about Flexbox, which is a one dimensional layout model, now CSS Grids are a two dimensional layout model, as you can define both rows and columns at the same time. This allows you to make quite complex layouts.
+
+Head over to https://codepen.io/sacah/pen/qBmXyaQ?editors=1100 and follow the instructions to learn the basics of CSS Grid.
+
+CSS Grid is also hugely capable, to dive in deeper, a great page is https://css-tricks.com/snippets/css/complete-guide-grid/
+And https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+
+
+## CSS animation
+Another very powerful concept, animations can give a more intuitive user interface and more efficient that old methods of animation, like using GIFs, or JavaScript animation.
+
+At the core, you define a named keyframe
+```CSS
+@keyframes rainbow {
+  0%, 100% {
+    background-color: red;
+  }
+  16% {
+    background-color: orange;
+  }
+  30% {
+    background-color: yellow;
+  }
+  44% {
+    background-color: green;
+  }
+  58% {
+    background-color: blue;
+  }
+  72% {
+    background-color: indigo;
+  }
+  86% {
+    background-color: violet;
+  }
+}
+```
+
+This says at 0% and 100% it should be red. At 16%, it should be orange and so on.
+
+CSS animations then figured out how to animate from 0% to 16%, so it will slowly change from red to orange, based on the timeframe we specify.
+
+Then we apply the defined animation to an element.
+
+```CSS
+.box { 
+  animation: rainbow 5s infinite;
+}
+```
+
+We use the animation property, rainbow is the name of the above keyframes we defined. 5s refers to it taking 5 seconds to go from 0% to 100%, allowing you to control the speed of the animation. infinite says this animation should run on a loop.
+
+You can see it running at https://codepen.io/sacah/pen/VwbzEzX?editors=1100
+
+The beauty of animation is that you can define any CSS property in each keyframe and it will figure out how to gradually change from one to the other value, maybe you want to increase the width of an element, maybe change its position on the page, the possibilities are endless.
+
+To dive deeper, check out https://developer.mozilla.org/en-US/docs/Web/CSS/animation
+
+## Building tabs
+Everyone should be familiar with the concept of tabs, here we will use ```label``` and ```input type="radio"``` to create easy to use accessible tabs.
+
+Accessibility is important, as not everyone on the internet accesses their device in the same way. While there are many different ways we could make tabs that look and work the same way to sighted users with a mouse, enabling them to work for people not using a mouse, or people with visual impairments using a screen reader.
+
+This method we're using is the simplest, and most accessible option.
+
+Head over to https://codepen.io/sacah/pen/dyWzgrq?editors=1100 and follow the instructions to learn about creating Tabs with labels and radios.
+
+## Aim
+Here is an example of what you could aim for
+![Image of tabs styled in app](Styled.png)
