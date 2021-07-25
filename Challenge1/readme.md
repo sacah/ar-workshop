@@ -23,9 +23,11 @@
 
 ## Aim
 Looking at Challenge1/index.html, you will see it looks like
+
 ![Image on unstyled tabs and forms](Unstyled.png)
 
 By the end of this document, you will have the knowledge to style the tabs and forms to look like 
+
 ![Image of tabs styled in app](Styled.png)
 
 Each section in this document is designed to give you the building blocks required to style the app. Read through **Learning** section, then doing the **Action** section. Some sections might also have a **Dive deeper** block, if at the end you'd like to know more, come back to these sections.
