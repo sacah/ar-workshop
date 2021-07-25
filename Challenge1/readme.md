@@ -2,6 +2,7 @@
 # Challenge 1 - HTML/CSS
 
 - [Challenge 1 - HTML/CSS](#challenge-1---htmlcss)
+  - [Aim](#aim)
   - [HTML overview](#html-overview)
   - [INPUTs](#inputs)
     - [type="radio"](#typeradio)
@@ -18,9 +19,23 @@
   - [CSS Grid](#css-grid)
   - [CSS animation](#css-animation)
   - [Building tabs](#building-tabs)
-  - [Aim](#aim)
+  - [The real deal](#the-real-deal)
+
+## Aim
+Looking at Challenge1/index.html, you will see it looks like
+![Image on unstyled tabs and forms](Unstyled.png)
+
+By the end of this document, you will have the knowledge to style the tabs and forms to look like 
+![Image of tabs styled in app](Styled.png)
+
+Each section in this document is designed to give you the building blocks required to style the app. Read through **Learning** section, then doing the **Action** section. Some sections might also have a **Dive deeper** block, if at the end you'd like to know more, come back to these sections.
+
+If you get stuck at any point, feel free to ask questions. If you can't get through everything in this workshop, this document is able to be accessed and continued from any internet connected device.
+
 
 ## HTML overview
+**Learning**
+
 HTML (HyperText Markup Language) is used to structure and give meaning to content on web pages. Below is a simple example of a basic HTML file.
 ```html
 <!doctype html>
@@ -41,21 +56,32 @@ Tags are the building blocks of HTML files, a tag is defined between the <>, so 
 
 You might notice that many of these tags appear twice, the first like ```<title>``` and the second like ```</title>```, the first one is the opening tag, the second one, with the / is the closing tag. Any text that appears between the opening and closing tags is considered the tags value, in the instance of the ```<title>``` tag, this text will become the title of the page.
 
-Some of the tags in our example also have attributes. Attributes are additional properties assigned to that tag. ```<html lang="en">```, here we open a HTML tag, and add an attribute lang, which we assign the value en. This attribute sets the language of this HTML file. There are many possible attributes on each html tag, you can look each tag up on the [HTML - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/HTML) to dig deeper.
+Some of the tags in our example also have attributes. Attributes are additional properties assigned to that tag. ```<html lang="en">```, here we open a HTML tag, and add an attribute lang, which we assign the value en. This attribute sets the language of this HTML file. 
+
+**Dive deeper** - There are many possible attributes on each html tag, a great resource is [HTML - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/HTML).
+
+**Action**
+
+Continue reading next section.
 
 
 ## INPUTs
+**Learning**
+
 The ```<input>``` HTML tag is an element that has a number of different types, all focused around input from the user in some way.
 
-For the ```<input>``` tag, type is an attribute, type can have many different values, to see more in-depth information, look at [Input - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input).
-
-Here are a few common values for the attribute type
+For the ```<input>``` tag, type is an attribute, here are a few common values for the attribute type
 ```html
 <input type="text" value="test">
 <input type="radio" name="question">
 <input type="radio" name="question">
 <input type="password" value="test">
 ```
+
+**Dive deeper** - [Input - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input).
+
+**Action**
+
 See these in action at https://codepen.io/sacah/pen/RwpQdPN
 
 ### type="radio"
@@ -63,17 +89,24 @@ In the above example of 2 radio inputs, notice how the name attribute has the sa
 
 
 ## LABELs
+**Learning**
+
 The ```<label>``` HTML tag seems simple, just displaying the text from the tags value. However a LABEL allows you to link this text to an INPUT. You notice in our INPUT examples above, there is nothing to tell you what the field is, the first INPUT is just a text box, how do you know what you should enter?
 
 ```html
 <label for="firstname">First name</label>
 <input type="text" id="firstname">
 ```
+
+**Action**
+
 See these in action at https://codepen.io/sacah/pen/RwpQdPN
 
 Now with a label, we can identify what information the INPUT wants us to enter. An important behaviour of LABELs is when you click on the label text, you will notice that it directs your focus to the INPUT it is linked with.
 
 ## CSS overview
+**Learning**
+
 CSS (Cascading Style Sheets) is used to define the layout and style of HTML tags. CSS can be entered as the value of a ```<style>``` HTML tag. Here is an example that styles all the text on a page to be blue.
 ```HTML
 <style>
@@ -94,9 +127,15 @@ label {
 ```
 In the above example, we've said find any HTML ```input``` or ```label``` tags, and style them so their text color is blue, their text is bold and the background color is black.
 
-We will cover different selectors and some properties below, though to really dig deeper into CSS, look at [CSS - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/CSS).
+**Dive deeper** - [CSS - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/CSS).
+
+**Action**
+
+Continuing reading the next section.
 
 ## Class selector
+**Learning**
+
 The most commonly used CSS selector is the Class selector. This allows you to single out 1 or many elements to apply a certain style to them.
 
 You first use the ```class``` attribute on the element, like
@@ -111,9 +150,13 @@ Now the ```div``` is marked with the class of ```full-border```, in CSS we can s
 ```
 This means any HTML element that has a class attribute containing ```full-border``` will have a big red border applied to it, provided that the HTML element supports borders, some elements don't.
 
+**Action**
+
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
 ## Tag selector
+**Learning**
+
 As was mentioned above, you can also target HTML tags in CSS. If we have a few ```label``` tags on the page, and want them all to have red borders, we can do this in CSS like
 ```CSS
 label { 
@@ -122,9 +165,13 @@ label {
 ```
 Now all HTML ```label``` tags will have a red border, provided no other style overwrites it.
 
+**Action**
+
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
 ## Attribute selector
+**Learning**
+
 You can also target attributes defined on HTML tags, with the following HTML code
 ```HTML
 <input type="text">
@@ -136,9 +183,13 @@ input[type="text"] {
 }
 ```
 
+**Action**
+
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
 ## Child selector
+**Learning**
+
 A child refers to a HTML tag that is nested directly inside another HTML tag, so in this example the ```input``` is the child of the ```div```
 ```HTML
 <div>
@@ -164,9 +215,12 @@ div > span {
 
 This will make any ```span``` that is a child off a ```div``` have a red border.
 
+**Action**
+
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
 ## Adjacent sibling selector
+**Learning**
 A sibling refers to a HTML tag that has the same parent, an adjacent sibling is a HTML tag that also immediately follows the reference element.
 
 In this example, ```input``` is an adjacent sibling of ```label```
@@ -184,9 +238,13 @@ label + input {
 }
 ```
 
+**Action**
+
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
 ## Pseudo-class selector - :checked
+**Learning**
+
 Pseudo-classes are set based on the elements state. Inputs with a ```type``` of radio, or checkbox, will have a ```:checked``` pseudo-class applied to it when it is selected. Radios and Checkboxes can't have a border applied to them though, so lets use the pseudo-class in combination with a sibling selector to add a border to a label.
 ```HTML
 <input type="radio" name="rgroup" id="radio1">
@@ -201,9 +259,13 @@ input:checked + label {
 }
 ```
 
+**Action**
+
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
 ## Pseudo-class selector - :hover
+**Learning**
+
 If your mouse is over an element, it will have a ```:hover``` pseudo-class applied to it.
 ```HTML
 <span>Hello</span>
@@ -216,25 +278,36 @@ span:hover {
 }
 ```
 
+**Action**
+
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
 ## Flexbox
+**Learning**
+
 Flexbox is a one dimensional layout model, allowing you to specify things in either a row or column, compared to something like CSS Grid, which we'll cover later, which is a two dimensional model, as you can do rows and columns at the same time.
+
+**Dive deeper** - Flexbox is hugely capable, we've only covered a very small amount of it's capabilities. If you'd like to learn more about it, here is a great page https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+**Action**
 
 Head over to https://codepen.io/sacah/pen/YzVQYwZ?editors=1100 and follow the instructions to learn the basics of Flexbox.
 
-Flexbox is hugely capable, we've only covered a very small amount of it's capabilities. If you'd like to learn more about it, here is a great page https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-
 ## CSS Grid
+**Learning**
+
 We just talked about Flexbox, which is a one dimensional layout model, now CSS Grids are a two dimensional layout model, as you can define both rows and columns at the same time. This allows you to make quite complex layouts.
+
+**Dive deeper** - CSS Grid is also hugely capable, to dive in deeper, a great page is https://css-tricks.com/snippets/css/complete-guide-grid/
+And https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+
+**Action**
 
 Head over to https://codepen.io/sacah/pen/qBmXyaQ?editors=1100 and follow the instructions to learn the basics of CSS Grid.
 
-CSS Grid is also hugely capable, to dive in deeper, a great page is https://css-tricks.com/snippets/css/complete-guide-grid/
-And https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
-
-
 ## CSS animation
+**Learning**
+
 Another very powerful concept, animations can give a more intuitive user interface and more efficient that old methods of animation, like using GIFs, or JavaScript animation.
 
 At the core, you define a named keyframe
@@ -278,21 +351,27 @@ Then we apply the defined animation to an element.
 
 We use the animation property, rainbow is the name of the above keyframes we defined. 5s refers to it taking 5 seconds to go from 0% to 100%, allowing you to control the speed of the animation. infinite says this animation should run on a loop.
 
+To dive deeper, check out https://developer.mozilla.org/en-US/docs/Web/CSS/animation
+
+**Action**
+
 You can see it running at https://codepen.io/sacah/pen/VwbzEzX?editors=1100
 
 The beauty of animation is that you can define any CSS property in each keyframe and it will figure out how to gradually change from one to the other value, maybe you want to increase the width of an element, maybe change its position on the page, the possibilities are endless.
 
-To dive deeper, check out https://developer.mozilla.org/en-US/docs/Web/CSS/animation
-
 ## Building tabs
+**Learning**
+
 Everyone should be familiar with the concept of tabs, here we will use ```label``` and ```input type="radio"``` to create easy to use accessible tabs.
 
 Accessibility is important, as not everyone on the internet accesses their device in the same way. While there are many different ways we could make tabs that look and work the same way to sighted users with a mouse, enabling them to work for people not using a mouse, or people with visual impairments using a screen reader.
 
 This method we're using is the simplest, and most accessible option.
 
+**Action**
+
 Head over to https://codepen.io/sacah/pen/dyWzgrq?editors=1100 and follow the instructions to learn about creating Tabs with labels and radios.
 
-## Aim
-Here is an example of what you could aim for
+## The real deal
+Now you have learnt all the building blocks you need to style the tabs and form to look like
 ![Image of tabs styled in app](Styled.png)
