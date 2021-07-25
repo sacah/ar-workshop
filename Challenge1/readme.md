@@ -30,10 +30,9 @@ By the end of this document, you will have the knowledge to style the tabs and f
 
 ![Image of tabs styled in app](Styled.png)
 
-Each section in this document is designed to give you the building blocks required to style the app. Read through **Learning** section, then doing the **Action** section. Some sections might also have a **Dive deeper** block, if at the end you'd like to know more, come back to these sections.
+Each section in this document is designed to give you the building blocks required to style the app. Read through each **Learning** section, then doing the **Action** section. Some sections might also have a **Dive deeper** block, if at the end you'd like to know more, come back to these sections.
 
-If you get stuck at any point, feel free to ask questions. If you can't get through everything in this workshop, this document is able to be accessed and continued from any internet connected device.
-
+If you get stuck at any point, feel free to ask questions. If you can't get through everything in the workshop, this document is able to be accessed and continued from any internet connected device.
 
 ## HTML overview
 **Learning**
