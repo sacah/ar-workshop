@@ -92,7 +92,7 @@ In the above example of 2 radio inputs, notice how the name attribute has the sa
 
 
 ## LABELs
-**Learning**
+### Learning
 
 The ```<label>``` HTML tag seems simple, just displaying the text from the tags value. However a LABEL allows you to link this text to an INPUT. You notice in our INPUT examples above, there is nothing to tell you what the field is, the first INPUT is just a text box, how do you know what you should enter?
 
@@ -101,7 +101,7 @@ The ```<label>``` HTML tag seems simple, just displaying the text from the tags 
 <input type="text" id="firstname">
 ```
 
-**Action**
+### Action
 
 See these in action at https://codepen.io/sacah/pen/RwpQdPN
 
