@@ -21,7 +21,7 @@
   - [Building tabs](#building-tabs)
   - [The real deal](#the-real-deal)
 
-## Aim
+# Aim
 Looking at Challenge1/index.html, you will see it looks like
 
 ![Image on unstyled tabs and forms](Unstyled.png)
@@ -34,8 +34,8 @@ Each section in this document is designed to give you the building blocks requir
 
 If you get stuck at any point, feel free to ask questions. If you can't get through everything in the workshop, this document is able to be accessed and continued from any internet connected device.
 
-## HTML overview
-```Learning```
+# HTML overview
+## Learning
 
 HTML (HyperText Markup Language) is used to structure and give meaning to content on web pages. Below is a simple example of a basic HTML file.
 ```html
@@ -59,15 +59,16 @@ You might notice that many of these tags appear twice, the first like ```<title>
 
 Some of the tags in our example also have attributes. Attributes are additional properties assigned to that tag. ```<html lang="en">```, here we open a HTML tag, and add an attribute lang, which we assign the value en. This attribute sets the language of this HTML file. 
 
-**Dive deeper** - There are many possible attributes on each html tag, a great resource is [HTML - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/HTML).
+## Dive deeper
+There are many possible attributes on each html tag, a great resource is [HTML - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/HTML).
 
-**Action**
+## Action
 
 Continue reading next section.
 
 
-## INPUTs
-**Learning**
+# INPUTs
+## Learning
 
 The ```<input>``` HTML tag is an element that has a number of different types, all focused around input from the user in some way.
 
@@ -79,9 +80,10 @@ For the ```<input>``` tag, type is an attribute, here are a few common values fo
 <input type="password" value="test">
 ```
 
-**Dive deeper** - [Input - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input).
+## Dive deeper
+[Input - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input).
 
-**Action**
+## Action
 
 See these in action at https://codepen.io/sacah/pen/RwpQdPN
 
