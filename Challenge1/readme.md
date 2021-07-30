@@ -35,7 +35,7 @@ Each section in this document is designed to give you the building blocks requir
 If you get stuck at any point, feel free to ask questions. If you can't get through everything in the workshop, this document is able to be accessed and continued from any internet connected device.
 
 ## HTML overview
-**Learning**
+```Learning```
 
 HTML (HyperText Markup Language) is used to structure and give meaning to content on web pages. Below is a simple example of a basic HTML file.
 ```html
