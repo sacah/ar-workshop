@@ -12,42 +12,50 @@
 * Recognise  single  saved face
 * Recognise  multiple saved face
 
-
-## JavaScipt overview
-JavaScript is a scripting language that  allows you to implement complex features on web pages. It makes HTML pages dynamic. Include JavaScript by <script> tags in HTML pages
-We are using ES6 in this workshop.
-```html
-<script></script>
-```
-
-### Initiate Javascript
-A JavaScript function is a block of code designed to perform a particular task.Its executed when "something" invokes it (calls it).
-```html
-<script>
-    function init() {
-        console.log("Lets start");
-    }
-    init();
-</script>   
-```
-
-### Browser APIs
+# Browser APIs
 Browser APIs are built into your web browser, ready-made sets of code building blocks that allow a developer to implement programs that would otherwise be hard or impossible to implement.In this workshop, we will be using
 
 The ```DOM (Document Object Model) API``` allows you to manipulate HTML and CSS, creating, removing and changing HTML, dynamically applying new styles to your page, etc. Every time you see a popup window appear on a page, or some new content displayed, that's the DOM in action.
 The ```Canvas and WebGL APIs``` allow you to create animated 2D and 3D graphics. 
 ```Audio and Video APIs``` like HTMLMediaElement and WebRTC allow you to do really interesting things with multimedia, such as play audio and video right in a web page, or grab video from your web camera and display it on someone else's computer.
 
-### Third party APIs 
+# Third party APIs 
 Third party APIs are not built into the browser by default, and you generally have to grab their code and information from somewhere on the Web. For example: Twitter API,Google Maps API  and the one we are using today is ```face.api```, JavaScript API for Face Recognition in the Browser with tensorflow.js( TensorFlow is used to create large-scale neural networks with many layers and mainly used for deep learning or machine learning problems).
 
+# setTimeout
+
+https://codepen.io/sacah/pen/JjNvemK?editors=1010
+
+# Camera to Video
+
+https://codepen.io/sacah/pen/dyWeQjN
+
+# Canvas
+
+https://codepen.io/sacah/pen/poPVQxB
+
+# Capture video ( Camera on)
+
+https://codepen.io/sacah/pen/wvdjQRx
+
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
 
 
-## Capture video ( Camera on)
-A variable declared outside a function, becomes GLOBAL.
-Media Stream APIs
+
+
+### Media Stream APIs
 The ``Navigator`` interface represents the state and the identity of the user agent. ```navigator``` object can be retrieved by read-only window ```navigator``` property.
-The ```Navigator.mediaDevices``` read-only property returns a MediaDevices object, which provides access to connected media input devices like cameras and microphones, as well as screen sharing (not supported in IE).
+The ```navigator.mediaDevices``` read-only property returns a MediaDevices object, which provides access to connected media input devices like cameras and microphones, as well as screen sharing (not supported in IE).
 The ```MediaDevices.getUserMedia()``` method prompts the user for permission to use a media input which produces a MediaStream with tracks containing the requested types of media. That stream here is a video track produced by a camera.     
 
 ```html
