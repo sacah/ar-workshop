@@ -1,6 +1,5 @@
 
 # Challenge 1 - HTML/CSS
-
 - [Challenge 1 - HTML/CSS](#challenge-1---htmlcss)
 - [Aim](#aim)
 - [HTML overview](#html-overview)
@@ -65,7 +64,7 @@ By the end of this document, you will have the knowledge to style the tabs and f
 
 ![Image of tabs styled in app](Styled.png)
 
-Each section in this document is designed to give you the building blocks required to style the app. Read through each ### :mag_right: Learning section, then doing the ### :high_brightness: Action section. Some sections might also have a ### :books: Dive deeper block, if at the end you'd like to know more, come back to these sections.
+Each section in this document is designed to give you the building blocks required to style the app. Read through each :mag_right: Learning section, then doing the :high_brightness: Action section. Some sections might also have a :books: Dive deeper block, if at the end you'd like to know more, come back to these sections.
 
 If you get stuck at any point, feel free to ask questions. If you can't get through everything in the workshop, this document is able to be accessed and continued from any internet connected device.
 
@@ -126,6 +125,7 @@ See these in action at https://codepen.io/sacah/pen/RwpQdPN
 ## type="radio"
 In the above example of 2 radio inputs, notice how the name attribute has the same value. This forms a group, and only allows 1 to be selected at a time. If you click on one of the radio inputs above, you'll notice it becomes selected. If you then click on the other radio input, the previous one becomes unselected and the new one becomes selected. This is important behaviour that we can use later.
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # LABELs
 ### :mag_right: Learning
@@ -142,6 +142,8 @@ The ```<label>``` HTML tag seems simple, just displaying the text from the tags 
 See these in action at https://codepen.io/sacah/pen/RwpQdPN
 
 Now with a label, we can identify what information the INPUT wants us to enter. An important behaviour of LABELs is when you click on the label text, you will notice that it directs your focus to the INPUT it is linked with.
+
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # CSS overview
 ### :mag_right: Learning
@@ -173,6 +175,8 @@ In the above example, we've said find any HTML ```input``` or ```label``` tags, 
 
 Continuing reading the next section.
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
 # Class selector
 ### :mag_right: Learning
 
@@ -194,6 +198,8 @@ This means any HTML element that has a class attribute containing ```full-border
 
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
 # Tag selector
 ### :mag_right: Learning
 
@@ -208,6 +214,8 @@ Now all HTML ```label``` tags will have a red border, provided no other style ov
 ### :high_brightness: Action
 
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
+
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # Attribute selector
 ### :mag_right: Learning
@@ -226,6 +234,8 @@ input[type="text"] {
 ### :high_brightness: Action
 
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
+
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # Child selector
 ### :mag_right: Learning
@@ -259,6 +269,8 @@ This will make any ```span``` that is a child off a ```div``` have a red border.
 
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
 # Adjacent sibling selector
 ### :mag_right: Learning
 A sibling refers to a HTML tag that has the same parent, an adjacent sibling is a HTML tag that also immediately follows the reference element.
@@ -282,6 +294,8 @@ label + input {
 
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
 # Pseudo-class selector - :checked
 ### :mag_right: Learning
 
@@ -303,6 +317,8 @@ input:checked + label {
 
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
 # Pseudo-class selector - :hover
 ### :mag_right: Learning
 
@@ -322,6 +338,8 @@ span:hover {
 
 See an example you can play with for this and the other selector examples at https://codepen.io/sacah/pen/rNyRmym?editors=1100
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
 # Flexbox
 ### :mag_right: Learning
 
@@ -334,6 +352,8 @@ Flexbox is hugely capable, we've only covered a very small amount of it's capabi
 
 Head over to https://codepen.io/sacah/pen/YzVQYwZ?editors=1100 and follow the instructions to learn the basics of Flexbox.
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
 # CSS Grid
 ### :mag_right: Learning
 
@@ -341,11 +361,13 @@ We just talked about Flexbox, which is a one dimensional layout model, now CSS G
 
 ### :books: Dive deeper
 CSS Grid is also hugely capable, to dive in deeper, a great page is https://css-tricks.com/snippets/css/complete-guide-grid/
-And https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
+and https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout
 
 ### :high_brightness: Action
 
 Head over to https://codepen.io/sacah/pen/qBmXyaQ?editors=1100 and follow the instructions to learn the basics of CSS Grid.
+
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # CSS animation
 ### :mag_right: Learning
@@ -401,6 +423,8 @@ You can see it running at https://codepen.io/sacah/pen/VwbzEzX?editors=1100
 
 The beauty of animation is that you can define any CSS property in each keyframe and it will figure out how to gradually change from one to the other value, maybe you want to increase the width of an element, maybe change its position on the page, the possibilities are endless.
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
 # Building tabs
 ### :mag_right: Learning
 
@@ -413,6 +437,8 @@ This method we're using is the simplest, and most accessible option.
 ### :high_brightness: Action
 
 Head over to https://codepen.io/sacah/pen/dyWzgrq?editors=1100 and follow the instructions to learn about creating Tabs with labels and radios.
+
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # The real deal
 Now you have learnt all the building blocks you need to style the tabs and form to look like
