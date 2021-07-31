@@ -2,11 +2,20 @@
 # Challenge 1 - HTML/CSS
 
 - [Challenge 1 - HTML/CSS](#challenge-1---htmlcss)
-  - [Aim](#aim)
-  - [HTML overview](#html-overview)
-  - [INPUTs](#inputs)
+- [Aim](#aim)
+- [HTML overview](#html-overview)
+  - [Learning](#learning)
+  - [Dive deeper](#dive-deeper)
+  - [Action](#action)
+- [INPUTs](#inputs)
+  - [:mag_right: Learning](#mag_right-learning)
+    - [:mag_right: Learning](#mag_right-learning-1)
+  - [Dive deeper](#dive-deeper-1)
+  - [:high_brightness: Action](#high_brightness-action)
     - [type="radio"](#typeradio)
   - [LABELs](#labels)
+    - [Learning](#learning-1)
+    - [Action](#action-1)
   - [CSS overview](#css-overview)
   - [Class selector](#class-selector)
   - [Tag selector](#tag-selector)
@@ -66,9 +75,12 @@ There are many possible attributes on each html tag, a great resource is [HTML -
 
 Continue reading next section.
 
+:wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash::wavy_dash: :wavy_dash: :wavy_dash: :wavy_dash:
 
 # INPUTs
-## Learning
+:mag_right: **Learning**
+## :mag_right: Learning
+### :mag_right: Learning
 
 The ```<input>``` HTML tag is an element that has a number of different types, all focused around input from the user in some way.
 
@@ -83,7 +95,7 @@ For the ```<input>``` tag, type is an attribute, here are a few common values fo
 ## Dive deeper
 [Input - MDN (Mozilla Developers Network)](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input).
 
-## Action
+## :high_brightness: Action
 
 See these in action at https://codepen.io/sacah/pen/RwpQdPN
 
