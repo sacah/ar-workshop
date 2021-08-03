@@ -2,7 +2,7 @@
 # Challenge 2 - JavaScript
 
 # Aim
-(Write properly)
+***** (Write properly)
 
 We will go through the building blocks of capturing video from your webcam, passing that through a model that has been trained to recognise faces, draw an overlay on the video highlighting detected faces, saving a detected face against a name, and finally parse multiple faces in one video frame and matching against saved faces to write names on the video feed.
 
@@ -35,10 +35,28 @@ https://codepen.io/sacah/pen/JjNvemK?editors=1010
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
-# Camera to Video
+# Media Stream APIs
 ### :mag_right: Learning
+The ``Navigator`` interface represents the state and the identity of the user agent. ```navigator``` object can be retrieved by read-only window ```navigator``` property.
+
+The ```navigator.mediaDevices``` read-only property returns a MediaDevices object, which provides access to connected media input devices like cameras and microphones, as well as screen sharing (not supported in IE).
+
+The ```MediaDevices.getUserMedia()``` method prompts the user for permission to use a media input which produces a MediaStream with tracks containing the requested types of media. That stream here is a video track produced by a camera pipped to a video element. 
+
+```JS
+var video = document.querySelector('video');
+navigator.mediaDevices.getUserMedia({ audio: false, video: true, video: { width: 480, height: 360 }}).then((stream) => {
+  video.srcObject = stream;
+  video.play();
+}).catch(function(err) {
+  console.log("error in capturing video");
+});
+```
+
+***** (Not sure if you want to describe some of the lines here, or delete the code above and direct them to the action, and comment some lines in the CodePen?)
 
 ### :books: Dive deeper
+https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 
 ### :high_brightness: Action
 https://codepen.io/sacah/pen/dyWeQjN
@@ -57,6 +75,19 @@ https://codepen.io/sacah/pen/poPVQxB
 
 # Capture video ( Camera on)
 ### :mag_right: Learning
+Now the we have learnt how to capture video from the webcam, and draw to a canvas, we combine them.
+```setTimeout(function, delay)``` : Executes the function specified by function in delay milliseconds.
+```HAVE_ENOUGH_DATA ( value -4) ```: Enough data is available—and the download rate is high enough—that the media can be played through to the end without interruption.
+
+```JS
+function isCameraReady() {
+  if (video.readyState === video.HAVE_ENOUGH_DATA) {
+    printToCanvas();
+  } else setTimeout(isCameraReady, 100);
+}
+```
+
+***** (Not sure if you want to describe some of the lines here, or delete the code above and direct them to the action, and comment some lines in the CodePen?)
 
 ### :books: Dive deeper
 
@@ -65,48 +96,25 @@ https://codepen.io/sacah/pen/wvdjQRx
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
-# Media Stream APIs
+# JavaScript (ES6) features
 ### :mag_right: Learning
+```Async/await``` : syntactical sugar on top of promises. An async function is a function that knows how to expect the possibility of the await keyword being used to invoke asynchronous code.
+
+***** (does the above paragraph offer much to a person not familiar with JS?)
+
+Invoking an aysnc function returns a promise. Await can be put in front of any async promise-based function to pause your code on that line until the promise fulfills, then return the resulting value.
+
+***** (Have a CodePen around async/await, maybe even promises since you reference them? CodePen will go in Action section)
+
+```Let/Const``` has block scope, variables declared inside a block {} cannot be accessed from outside the block
 
 ### :books: Dive deeper
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 
 ### :high_brightness: Action
-The ``Navigator`` interface represents the state and the identity of the user agent. ```navigator``` object can be retrieved by read-only window ```navigator``` property.
-The ```navigator.mediaDevices``` read-only property returns a MediaDevices object, which provides access to connected media input devices like cameras and microphones, as well as screen sharing (not supported in IE).
-The ```MediaDevices.getUserMedia()``` method prompts the user for permission to use a media input which produces a MediaStream with tracks containing the requested types of media. That stream here is a video track produced by a camera.     
 
-```html
-var video = document.getElementById("video"); //Global variable
-function init() {
-      navigator.mediaDevices.getUserMedia({ audio: false, video: true, video: { width: 480, height: 360 }}).then((stream) => {
-        video.srcObject = stream;
-        //setupCanvas();
-      }).catch(function(err) {
-        /* handle the error */
-        console.log("error in capturing video");
-    });
-}
-```
-```getElementById()```:  method returns the element that has the ID attribute with the specified value
-```setTimeout(function, delay)``` : Executes the function specified by function in delay milliseconds.
-```HAVE_ENOUGH_DATA ( value -4) ```: Enough data is available—and the download rate is high enough—that the media can be played through to the end without interruption.
-
-```html
-//uncomment setupCanvas()
-
-  function setupCanvas() {
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-       console.log("video ready to be used");  
-    } else setTimeout(setupCanvas, 100);
-  }
-```
-
-### More ES6 featues
-```Aync/await``` : ES6 recent additions , syntactic sugar on top of promises. An async function is a function that knows how to expect the possibility of the await keyword being used to invoke asynchronous code.
-Invoking aysnc function returns a promise. Await can be put in front of any async promise-based function to pause your code on that line until the promise fulfills, then return the resulting value.
-
-Before ES2015, JavaScript had only two types of scope: Global Scope and Function Scope
-```Let/Const``` has block scope, Variables declared inside a block {} cannot be accessed from outside the block
 
 ## Understanding face-api.js
 
