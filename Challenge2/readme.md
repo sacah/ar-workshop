@@ -169,9 +169,11 @@ The networks return the bounding boxes of the face, with the corresponding score
 ```JS
   var singleFaceResultOnLoad;
   singleFaceResultOnLoad = await faceapi.detectSingleFace(video);
+  console.log(singleFaceResultOnLoad);
 ```
 ***** (write properly)
-faceapi.detectSingleFace returns an object with lots of information, you won't notice anything useful at this point, but in the next few sections we will use the information in this object to draw landmarks on a face it detected.
+faceapi.detectSingleFace returns an object with lots of information, open the DevTools and have a look in the Console as what is contained in singleFaceResultOnLoad.
+Other than in the DevTools Console, you won't notice anything happening in the app at this point, but in the next few sections we will use the information in this object to draw landmarks on a face it detected.
 
 ### :books: Dive deeper
 
@@ -193,7 +195,7 @@ For that purpose face-api.js implements a simple CNN, which returns the 68 point
   faceapi.draw.drawFaceLandmarks(canvas, singleFaceResultOnLoad);
 
   // to further understand it more, we can get positions for 68 point face landmarks and draw boundaries for each
-
+  const context = canvas.getContext("2d");
   const landmarks = singleFaceResultOnLoad.landmarks;
   const jawOutline = landmarks.getJawOutline()
   const nose = landmarks.getNose()
@@ -228,67 +230,6 @@ face-api.js implements a simple CNN and  returns the 68 point face landmarks of 
 ```Face Recognition``` 
 Feed the extracted and aligned face images into the face recognition network. The network has been trained to learn to map the characteristics of a human face to a ```face descriptor``` (a feature vector with 128 values), which is also oftentimes referred to as face embeddings.
 
-
-
---move later
-```faceapi.detectAllFaces``` : To detect all face's bounding boxes of an input image/video
-Face-api.js implements multiple face detectors for different usecases.
-
---move later
-```How comparison work```
-Face descriptor of each extracted face image and compare them with the face descriptors of the reference data. ```Euclidean distance``` is computed between two face descriptors and judge whether two faces are similar based on a threshold value (for 150 x 150 sized face images 0.6 is a good threshold value)
-
-
-
-## Setup Canvas and detect single face 
-Detect single face , return landmarks to face decriptor.
-
-### detectSingleFace 
-
-
-### withFaceLandmarks() & drawFaceLandmarks
-Next, we want to align the bounding boxes, such that we can extract the images centered at the face for each box before passing them to the face recognition network, as this will make face recognition much more accurate!
-For that purpose face-api.js implements a simple CNN, which returns the 68 point face landmarks of a given face image:
-
-```html
-  async function setupCanvas() {
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks();
-        console.log(singleFaceResultOnLoad);
-        faceapi.draw.drawFaceLandmarks(canvas, singleFaceResultOnLoad);
-        hideLoader();
-      } else setTimeout(setupCanvas, 100);
-    } 
-
-    to further understand it more, we can get positions for 68 point face landmarks and draw boundaries for each
-
-    var context = canvas.getContext("2d");
-
-    async function setupCanvas() {
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks();
-        console.log(singleFaceResultOnLoad);
-        //faceapi.draw.drawFaceLandmarks(canvas, singleFaceResultOnLoad);
-        
-        const landmarks = singleFaceResultOnLoad.landmarks;
-
-        const jawOutline = landmarks.getJawOutline()
-        const nose = landmarks.getNose()
-        const mouth = landmarks.getMouth()
-        const leftEye = landmarks.getLeftEye()
-        const rightEye = landmarks.getRightEye()
-        const leftEyeBbrow = landmarks.getLeftEyeBrow()
-        const rightEyeBrow = landmarks.getRightEyeBrow()
-        console.log("jawOutline", jawOutline);
-        faceapi.draw.drawContour(context, jawOutline);
-        faceapi.draw.drawContour(context, leftEye);
-        hideLoader();
-
-      } else setTimeout(setupCanvas, 100);
-    } 
-        
-
-```
 ### Face descriptor withFaceDescriptor()
 As we haven't saved any face data yet, so it won't be able to recognize now. But we need face descriptor of face to be saved  as reference data to compare later.  
 
@@ -362,6 +303,16 @@ function changeTab(ev) {
 
 ```
 ## Recognise  single  saved face
+
+
+--move later
+```faceapi.detectAllFaces``` : To detect all face's bounding boxes of an input image/video
+Face-api.js implements multiple face detectors for different usecases.
+
+--move later
+```How comparison work```
+Face descriptor of each extracted face image and compare them with the face descriptors of the reference data. ```Euclidean distance``` is computed between two face descriptors and judge whether two faces are similar based on a threshold value (for 150 x 150 sized face images 0.6 is a good threshold value)
+
 ```requestAnimationFrame(callback)```: Tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint.
 As its async calls , let's put loader to wait for the response
 ```html
