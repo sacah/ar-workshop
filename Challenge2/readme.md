@@ -116,14 +116,52 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 ### :high_brightness: Action
 
 
-## Understanding face-api.js
+# Understanding face-api.js
+face-api.js is a JavaScript library that does the heavy lifting required for face detection. It has models included that have already been trained to detect human faces, it does this by detecting various landmarks on our faces, like your eyes and mouth.
 
---move later
-```faceapi.detectAllFaces``` : To detect all face's bounding boxes of an input image/video
-Face-api.js implements multiple face detectors for different usecases.
+face-api.js exposes some APIs we can use to tap into the power it contains.
 
-```Face Detection```
+## Load models 
+### :mag_right: Learning
+Face-api provides different models but we will use face detection, face landmark and face recognition model for this workshop.
+
+Deep learning neural network models learn to map inputs to outputs given a training dataset of examples. The training process involves finding a set of weights in the network that proves to be good, or good enough, at solving the specific problem.
+***** (this is a jargon heavy sentence, that needs to be mapped to an example they can understand. Maybe there is a website that has an example of training a model, shows a dataset, how weights work. Good for a small overview here, then a dive deeper section with links) 
+
+***** (As discussed, CodePens seem to allow external files, though these people will have static-server running, maybe they can start building these examples in the index.html file itself, or make separate .html files for the next few examples. Move code block to Action section and walk them through adding code and what to expect?)
+
+```html
+  <script src="/face-api/face-api.min.js" type="text/javascript"></script>
+    //put async and load models in init function
+     async function init() {
+      await faceapi.loadSsdMobilenetv1Model('/face-api/');
+      await faceapi.loadFaceLandmarkModel('/face-api/');
+      await faceapi.loadFaceRecognitionModel('/face-api/');
+      navigator.mediaDevices.getUserMedia({ audio: false, video: true, video: { width: 480, height: 360 }}).then((stream) => {
+        video.srcObject = stream;
+        setupCanvas();
+      }).catch(function(err) {
+          /* handle the error */
+          console.log("error in capturing video");
+      });;
+    }
+    
+```
+
+### :books: Dive deeper
+
+### :high_brightness: Action
+
+
+## detectSingleFace
+
+
+
+
+
 The most accurate face detector is a``` SSD (Single Shot Multibox Detector)```, which is basically a CNN based on MobileNet V1, with some additional box prediction layers stacked on top of the network( use regular convulations which is slower than depthwise seperable convolution)
+
+***** (I've done some machine learning stuff and even I couldn't tell you what a depthwise seperable convolution is, wondering if the above paragraph maybe goes in the Dive deeper section, with links to solid descriptions on other sites, else maybe delete above paragraph?)
 
 The networks return the bounding boxes of each face, with their corresponding scores, e.g. the probability of each bounding box showing a face.
 
@@ -134,6 +172,10 @@ face-api.js implements a simple CNN and  returns the 68 point face landmarks of 
 ```Face Recognition``` 
 Feed the extracted and aligned face images into the face recognition network. The network has been trained to learn to map the characteristics of a human face to a ```face descriptor``` (a feature vector with 128 values), which is also oftentimes referred to as face embeddings.
 
+
+--move later
+```faceapi.detectAllFaces``` : To detect all face's bounding boxes of an input image/video
+Face-api.js implements multiple face detectors for different usecases.
 
 --move later
 ```How comparison work```
