@@ -115,11 +115,13 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 
 ### :high_brightness: Action
 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # Understanding face-api.js
 face-api.js is a JavaScript library that does the heavy lifting required for face detection. It has models included that have already been trained to detect human faces, it does this by detecting various landmarks on our faces, like your eyes and mouth.
 
 face-api.js exposes some APIs we can use to tap into the power it contains.
+
 
 ## Load models 
 ### :mag_right: Learning
@@ -130,34 +132,88 @@ Deep learning neural network models learn to map inputs to outputs given a train
 
 ***** (As discussed, CodePens seem to allow external files, though these people will have static-server running, maybe they can start building these examples in the index.html file itself, or make separate .html files for the next few examples. Move code block to Action section and walk them through adding code and what to expect?)
 
-```html
-  <script src="/face-api/face-api.min.js" type="text/javascript"></script>
-    //put async and load models in init function
-     async function init() {
-      await faceapi.loadSsdMobilenetv1Model('/face-api/');
-      await faceapi.loadFaceLandmarkModel('/face-api/');
-      await faceapi.loadFaceRecognitionModel('/face-api/');
-      navigator.mediaDevices.getUserMedia({ audio: false, video: true, video: { width: 480, height: 360 }}).then((stream) => {
-        video.srcObject = stream;
-        setupCanvas();
-      }).catch(function(err) {
-          /* handle the error */
-          console.log("error in capturing video");
-      });;
-    }
-    
+```JS
+  await faceapi.loadSsdMobilenetv1Model('/face-api/');
+  await faceapi.loadFaceLandmarkModel('/face-api/');
+  await faceapi.loadFaceRecognitionModel('/face-api/');
+```
+***** (mention making function async)
+
+### :books: Dive deeper
+
+### :high_brightness: Action
+
+Put above code into correct function, change function to async.
+
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
+## Adding a loading spinner
+### :mag_right: Learning
+Now that we have asynchronous code, it is useful to display a spinner so users know when loading has finished.
+
+### :books: Dive deeper
+
+### :high_brightness: Action
+***** (We've already shown them how to get elements, maybe just talk about .style.display = 'block' | 'none' and get them to put it together?)
+```JS
+.style.display = 'block';
+.style.display = 'none';
+```
+
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
+## detectSingleFace
+### :mag_right: Learning
+The networks return the bounding boxes of the face, with the corresponding scores, e.g. the probability of each bounding box showing a face.
+
+```JS
+  var singleFaceResultOnLoad;
+  singleFaceResultOnLoad = await faceapi.detectSingleFace(video);
+```
+***** (write properly)
+faceapi.detectSingleFace returns an object with lots of information, you won't notice anything useful at this point, but in the next few sections we will use the information in this object to draw landmarks on a face it detected.
+
+### :books: Dive deeper
+
+### :high_brightness: Action
+
+Add the code from the Learning section to your index.html 
+
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
+## withFaceLandmarks() & drawFaceLandmarks
+### :mag_right: Learning
+
+***** (Simplify this paragraph)
+Next, we want to align the bounding boxes, such that we can extract the images centered at the face for each box before passing them to the face recognition network, as this will make face recognition much more accurate!
+For that purpose face-api.js implements a simple CNN, which returns the 68 point face landmarks of a given face image:
+
+```JS
+  singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks();
+  faceapi.draw.drawFaceLandmarks(canvas, singleFaceResultOnLoad);
+
+  // to further understand it more, we can get positions for 68 point face landmarks and draw boundaries for each
+
+  const landmarks = singleFaceResultOnLoad.landmarks;
+  const jawOutline = landmarks.getJawOutline()
+  const nose = landmarks.getNose()
+  const mouth = landmarks.getMouth()
+  const leftEye = landmarks.getLeftEye()
+  const rightEye = landmarks.getRightEye()
+  const leftEyeBbrow = landmarks.getLeftEyeBrow()
+  const rightEyeBrow = landmarks.getRightEyeBrow()
+  faceapi.draw.drawContour(context, jawOutline);
+  faceapi.draw.drawContour(context, leftEye);
 ```
 
 ### :books: Dive deeper
 
 ### :high_brightness: Action
 
-
-## detectSingleFace
-
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 
-
+***** (I feel like we should take them through a few examples, just talking about the basics of each function leading up to a working example of a single face being detected and landmarks being drawn. At that point, maybe the following paragraphs can be used to describe what's happening. It just feels like, without seeing an example, the following is hard to make sense of.)
 
 The most accurate face detector is a``` SSD (Single Shot Multibox Detector)```, which is basically a CNN based on MobileNet V1, with some additional box prediction layers stacked on top of the network( use regular convulations which is slower than depthwise seperable convolution)
 
@@ -173,6 +229,7 @@ face-api.js implements a simple CNN and  returns the 68 point face landmarks of 
 Feed the extracted and aligned face images into the face recognition network. The network has been trained to learn to map the characteristics of a human face to a ```face descriptor``` (a feature vector with 128 values), which is also oftentimes referred to as face embeddings.
 
 
+
 --move later
 ```faceapi.detectAllFaces``` : To detect all face's bounding boxes of an input image/video
 Face-api.js implements multiple face detectors for different usecases.
@@ -183,61 +240,12 @@ Face descriptor of each extracted face image and compare them with the face desc
 
 
 
-## Load models 
-Face-api provides different models but we will use face detection, face landmark and face recognition model for this workshop.
-Deep learning neural network models learn to map inputs to outputs given a training dataset of examples. The training process involves finding a set of weights in the network that proves to be good, or good enough, at solving the specific problem.
- 
-
-```html
-  <script src="/face-api/face-api.min.js" type="text/javascript"></script>
-    //put async and load models in init function
-     async function init() {
-      await faceapi.loadSsdMobilenetv1Model('/face-api/');
-      await faceapi.loadFaceLandmarkModel('/face-api/');
-      await faceapi.loadFaceRecognitionModel('/face-api/');
-      navigator.mediaDevices.getUserMedia({ audio: false, video: true, video: { width: 480, height: 360 }}).then((stream) => {
-        video.srcObject = stream;
-        setupCanvas();
-      }).catch(function(err) {
-          /* handle the error */
-          console.log("error in capturing video");
-      });;
-    }
-    
-```
-
 ## Setup Canvas and detect single face 
 Detect single face , return landmarks to face decriptor.
 
 ### detectSingleFace 
-The networks return the bounding boxes of the face, with the corresponding scores, e.g. the probability of each bounding box showing a face.
 
 
-```html
-  var canvas = document.getElementById("canvas");
-  var singleFaceResultOnLoad;
-  async function setupCanvas() {
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        singleFaceResultOnLoad = await faceapi.detectSingleFace(video);
-        faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
-        console.log(singleFaceResultOnLoad);
-      } else setTimeout(setupCanvas, 100);
-    } 
-```
-### Put loader
-```html
-<div id="loader"></div>
-    //show loader 
-    function showLoader(){
-      document.getElementById("loader").style.display ='block';
-    }
-     //hide  loader 
-    function hideLoader(){
-      document.getElementById("loader").style.display ='none';
-    }
-    
-Add  hideLoader() in setupCanvas(); 
-```
 ### withFaceLandmarks() & drawFaceLandmarks
 Next, we want to align the bounding boxes, such that we can extract the images centered at the face for each box before passing them to the face recognition network, as this will make face recognition much more accurate!
 For that purpose face-api.js implements a simple CNN, which returns the 68 point face landmarks of a given face image:
