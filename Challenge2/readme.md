@@ -123,7 +123,7 @@ face-api.js is a JavaScript library that does the heavy lifting required for fac
 face-api.js exposes some APIs we can use to tap into the power it contains.
 
 
-## Load models 
+# Load models 
 ### :mag_right: Learning
 Face-api provides different models but we will use face detection, face landmark and face recognition model for this workshop.
 
@@ -147,7 +147,7 @@ Put above code into correct function, change function to async.
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
-## Adding a loading spinner
+# Adding a loading spinner
 ### :mag_right: Learning
 Now that we have asynchronous code, it is useful to display a spinner so users know when loading has finished.
 
@@ -162,7 +162,7 @@ Now that we have asynchronous code, it is useful to display a spinner so users k
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
-## detectSingleFace
+# detectSingleFace
 ### :mag_right: Learning
 The networks return the bounding boxes of the face, with the corresponding scores, e.g. the probability of each bounding box showing a face.
 
@@ -183,7 +183,7 @@ Add the code from the Learning section to your index.html
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
-## withFaceLandmarks() & drawFaceLandmarks
+# withFaceLandmarks() & drawFaceLandmarks
 ### :mag_right: Learning
 
 ***** (Simplify this paragraph)
@@ -230,10 +230,15 @@ face-api.js implements a simple CNN and  returns the 68 point face landmarks of 
 ```Face Recognition``` 
 Feed the extracted and aligned face images into the face recognition network. The network has been trained to learn to map the characteristics of a human face to a ```face descriptor``` (a feature vector with 128 values), which is also oftentimes referred to as face embeddings.
 
-### Face descriptor withFaceDescriptor()
+# Face descriptor withFaceDescriptor()
+### :mag_right: Learning
+
+### :books: Dive deeper
+
+### :high_brightness: Action
 As we haven't saved any face data yet, so it won't be able to recognize now. But we need face descriptor of face to be saved  as reference data to compare later.  
 
-```html 
+```JS 
     async function setupCanvas() {
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
         singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
@@ -244,11 +249,18 @@ As we haven't saved any face data yet, so it won't be able to recognize now. But
     }
 ```
 
-## Add Face (Save face descripter data)
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
+# Add Face (Save face descripter data)
+### :mag_right: Learning
+
+### :books: Dive deeper
+
+### :high_brightness: Action
 EventTarget.addEventListener() : The EventTarget method addEventListener() sets up a function that will be called whenever the specified event is delivered to the target.
 localStorage : The localStorage read-only property of the window interface allows you to access a Storage object for the Document's origin; the stored data is saved across browser sessions.
 
-```html 
+```JS 
     document.getElementById('add').addEventListener('click', addPerson);
     const faces = {};
     
@@ -267,13 +279,26 @@ localStorage : The localStorage read-only property of the window interface allow
       return;
     }
 ```
-##  Add more faces
+
+#  Add more faces
+### :mag_right: Learning
+
+### :books: Dive deeper
+
+### :high_brightness: Action
  const faces = JSON.parse(localStorage.getItem('faces') || '{}');
 
-## Make tabs work 
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
+# Make tabs work 
+### :mag_right: Learning
+
+### :books: Dive deeper
+
+### :high_brightness: Action
 Add person - for adding face 
 Request payment - for recognising and asking for payment
-```html 
+```JS 
 var tab = "addPerson";
 document.getElementById('requestPaymentTab').addEventListener('click', changeTab);
 document.getElementById('addPersonTab').addEventListener('click', changeTab);
@@ -302,7 +327,15 @@ function changeTab(ev) {
     }
 
 ```
-## Recognise  single  saved face
+
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
+# Recognise  single  saved face
+### :mag_right: Learning
+
+### :books: Dive deeper
+
+### :high_brightness: Action
 
 
 --move later
@@ -315,7 +348,7 @@ Face descriptor of each extracted face image and compare them with the face desc
 
 ```requestAnimationFrame(callback)```: Tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint.
 As its async calls , let's put loader to wait for the response
-```html
+```JS
   async function setupCanvas() {
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
         if(tab === 'addPerson') {
@@ -368,9 +401,17 @@ As its async calls , let's put loader to wait for the response
       requestAnimationFrame(renderFrame);
     }
 ```
-## Recognise  multiple saved face
 
-```html
+:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
+
+# Recognise  multiple saved face
+### :mag_right: Learning
+
+### :books: Dive deeper
+
+### :high_brightness: Action
+
+```JS
    async function faceID() {
       const savedFaceDescriptors = [];
       const requestPeople = [];
@@ -408,6 +449,3 @@ As its async calls , let's put loader to wait for the response
       requestAnimationFrame(renderFrame);
     }
 ```
-
-
-
