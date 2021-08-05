@@ -212,11 +212,13 @@ For that purpose face-api.js implements a simple CNN, which returns the 68 point
 
 ### :high_brightness: Action
 
+Extend the code to draw more landmarks on the video.
+
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # How face detection works
 ### :mag_right: Learning
-***** (I feel like we should take them through a few examples, just talking about the basics of each function leading up to a working example of a single face being detected and landmarks being drawn. At that point, maybe the following paragraphs can be used to describe what's happening. It just feels like, without seeing an example, the following is hard to make sense of.)
+***** (Now we've shown them an example, it's a good place to go a bit more in depth about how it works. Though remember these are early uni students.)
 
 The most accurate face detector is a``` SSD (Single Shot Multibox Detector)```, which is basically a CNN based on MobileNet V1, with some additional box prediction layers stacked on top of the network( use regular convulations which is slower than depthwise seperable convolution)
 
@@ -224,11 +226,13 @@ The most accurate face detector is a``` SSD (Single Shot Multibox Detector)```, 
 
 The networks return the bounding boxes of each face, with their corresponding scores, e.g. the probability of each bounding box showing a face.
 
-```Face Landmark Detection and Face Alignment```
+**Face Landmark Detection and Face Alignment**
+
 After detection, align the bounding boxes to extract the images centred at the face for each box.
 face-api.js implements a simple CNN and  returns the 68 point face landmarks of a given face image.
 
-```Face Recognition``` 
+**Face Recognition**
+
 Feed the extracted and aligned face images into the face recognition network. The network has been trained to learn to map the characteristics of a human face to a ```face descriptor``` (a feature vector with 128 values), which is also oftentimes referred to as face embeddings.
 
 ### :books: Dive deeper
@@ -238,28 +242,31 @@ Continue on to the next section.
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
-# Face descriptor withFaceDescriptor()
+# withFaceDescriptor()
 ### :mag_right: Learning
+So far our app will recognise the landmarks of a human face in a video feed. What we'd like it to do is be able to apply a name to a face.
+
+To do this, we need to save the FaceDescriptor against a name, then later we can compare faces we detect in the video feed against saved FaceDescriptors and see if any match.
+
+We add the ```.withFaceDescriptior()``` function to our ```detectSingleFace()``` call to retrieve the FaceDescriptor.
+
+```singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();```
+
+***** (Brief on drawDetections)
 
 ### :books: Dive deeper
 
 ### :high_brightness: Action
-As we haven't saved any face data yet, so it won't be able to recognize now. But we need face descriptor of face to be saved  as reference data to compare later.  
+Modify your code adding in ```.withFaceDescriptors()``` and ```drawDetections()``` to see how it works.
 
 ```JS 
-    async function setupCanvas() {
-    if (video.readyState === video.HAVE_ENOUGH_DATA) {
-        singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
-        console.log(singleFaceResultOnLoad);
-        faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
-        hideLoader();
-      } else setTimeout(setupCanvas, 100);
-    }
+  singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
+  faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
 ```
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
-# Add Face (Save face descripter data)
+# Add Face (Save face descriptor data)
 ### :mag_right: Learning
 
 ### :books: Dive deeper
