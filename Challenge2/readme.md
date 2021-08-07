@@ -2,9 +2,13 @@
 # Challenge 2 - JavaScript
 
 # Aim
-***** (Write properly)
-
-We will go through the building blocks of capturing video from your webcam, passing that through a model that has been trained to recognise faces, draw an overlay on the video highlighting detected faces, saving a detected face against a name, and finally parse multiple faces in one video frame and matching against saved faces to write names on the video feed.
+For Challenge 2, to achieve what was shown in the DEMO, we will go through the building blocks for:
+- capturing video from your webcam
+- passing video through a model that has been trained to recognise faces
+- draw an overlay on the video highlighting detected faces 
+- saving a detected face with a name 
+- recognising single saved face 
+- and finally parse multiple faces in one video frame and matching against saved faces to write names on the video feed.
 
 # Browser APIs
 ### :mag_right: Learning
@@ -43,18 +47,6 @@ The ```navigator.mediaDevices``` read-only property returns a MediaDevices objec
 
 The ```MediaDevices.getUserMedia()``` method prompts the user for permission to use a media input which produces a MediaStream with tracks containing the requested types of media. That stream here is a video track produced by a camera pipped to a video element. 
 
-```JS
-var video = document.querySelector('video');
-navigator.mediaDevices.getUserMedia({ audio: false, video: true, video: { width: 480, height: 360 }}).then((stream) => {
-  video.srcObject = stream;
-  video.play();
-}).catch(function(err) {
-  console.log("error in capturing video");
-});
-```
-
-***** (Not sure if you want to describe some of the lines here, or delete the code above and direct them to the action, and comment some lines in the CodePen?)
-
 ### :books: Dive deeper
 https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
 
@@ -86,8 +78,6 @@ function isCameraReady() {
   } else setTimeout(isCameraReady, 100);
 }
 ```
-
-***** (Not sure if you want to describe some of the lines here, or delete the code above and direct them to the action, and comment some lines in the CodePen?)
 
 ### :books: Dive deeper
 
