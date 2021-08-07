@@ -57,8 +57,12 @@ https://codepen.io/sacah/pen/dyWeQjN
 
 # Canvas
 ### :mag_right: Learning
+The HTML <canvas> element is used to draw graphics, on the fly, via JavaScript.
+
+The <canvas> element is only a container for graphics. You must use JavaScript to actually draw the graphics.
 
 ### :books: Dive deeper
+https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
 ### :high_brightness: Action
 https://codepen.io/sacah/pen/poPVQxB
@@ -90,11 +94,7 @@ https://codepen.io/sacah/pen/wvdjQRx
 ### :mag_right: Learning
 ```Async/await``` : syntactical sugar on top of promises. An async function is a function that knows how to expect the possibility of the await keyword being used to invoke asynchronous code.
 
-***** (does the above paragraph offer much to a person not familiar with JS?)
-
 Invoking an aysnc function returns a promise. Await can be put in front of any async promise-based function to pause your code on that line until the promise fulfills, then return the resulting value.
-
-***** (Have a CodePen around async/await, maybe even promises since you reference them? CodePen will go in Action section)
 
 ```Let/Const``` has block scope, variables declared inside a block {} cannot be accessed from outside the block
 
@@ -104,6 +104,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/asy
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
 
 ### :high_brightness: Action
+https://codepen.io/gags1409/pen/WNjaVKJ
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
@@ -118,7 +119,8 @@ face-api.js exposes some APIs we can use to tap into the power it contains.
 Face-api provides different models but we will use face detection, face landmark and face recognition model for this workshop.
 
 Deep learning neural network models learn to map inputs to outputs given a training dataset of examples. The training process involves finding a set of weights in the network that proves to be good, or good enough, at solving the specific problem.
-***** (this is a jargon heavy sentence, that needs to be mapped to an example they can understand. Maybe there is a website that has an example of training a model, shows a dataset, how weights work. Good for a small overview here, then a dive deeper section with links) 
+In another words, the model is the “thing” that is saved after running a machine learning algorithm on training data and represents the rules, numbers, and any other algorithm-specific data structures required to make predictions.
+
 
 ***** (As discussed, CodePens seem to allow external files, though these people will have static-server running, maybe they can start building these examples in the index.html file itself, or make separate .html files for the next few examples. Move code block to Action section and walk them through adding code and what to expect?)
 
@@ -130,7 +132,9 @@ Deep learning neural network models learn to map inputs to outputs given a train
 ***** (mention making function async)
 
 ### :books: Dive deeper
-
+https://towardsai.net/p/machine-learning/how-to-build-and-train-your-first-neural-network-9a07d020c4bb
+https://deeplizard.com/learn/video/daovGOlMbT4
+  
 ### :high_brightness: Action
 
 Put above code into correct function, change function to async.
