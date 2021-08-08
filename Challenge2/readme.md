@@ -26,12 +26,15 @@ https://developer.mozilla.org/en-US/docs/Web/API
 # Third party APIs 
 
 Third party APIs are not built into the browser by default, and you generally have to grab their code and information from somewhere on the Web. For example: Twitter API, Google Maps API and the one we are using today is ```face.api```, JavaScript API for Face Recognition in the Browser with tensorflow.js (TensorFlow is used to create large-scale neural networks with many layers and mainly used for deep learning or machine learning problems).
+### :books: Dive deeper
+https://github.com/justadudewhohacks/face-api.js
+https://justadudewhohacks.github.io/face-api.js/docs/index.html
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # setTimeout
 ### :mag_right: Learning
-The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
+The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds. We will using it further in the code.
 ### :books: Dive deeper
 https://www.w3schools.com/jsreF/met_win_settimeout.asp
 ### :high_brightness: Action
@@ -82,7 +85,6 @@ function isCameraReady() {
   } else setTimeout(isCameraReady, 100);
 }
 ```
-
 ### :books: Dive deeper
 https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/readyState
   
@@ -146,9 +148,12 @@ Put above code into correct function, change function to async.
 ### :mag_right: Learning
 Now that we have asynchronous code, it is useful to display a spinner so users know when loading has finished.
 
+  
 ### :high_brightness: Action
-***** (We've already shown them how to get elements, maybe just talk about .style.display = 'block' | 'none' and get them to put it together?)
+  Add loader div ( css already in html). You can hide/show loader when needed. Use  .style.display = 'block' | 'none' by fetching element by loader id.
 ```JS
+ <div id="loader"></div>
+  
 .style.display = 'block';
 .style.display = 'none';
 ```
@@ -164,20 +169,22 @@ The networks return the bounding boxes of the face, with the corresponding score
   singleFaceResultOnLoad = await faceapi.detectSingleFace(video);
   console.log(singleFaceResultOnLoad);
 ```
-***** (write properly)
-faceapi.detectSingleFace returns an object with lots of information, open the DevTools and have a look in the Console as what is contained in singleFaceResultOnLoad.
+Use the DevTools and have a look in the Console as what is contained in singleFaceResultOnLoad.
 Other than in the DevTools Console, you won't notice anything happening in the app at this point, but in the next few sections we will use the information in this object to draw landmarks on a face it detected.
 
 ### :books: Dive deeper
 https://justadudewhohacks.github.io/face-api.js/docs/globals.html#detectsingleface
+  
 https://justadudewhohacks.github.io/face-api.js/webcam_face_tracking
-  https://github.com/justadudewhohacks/face-api.js/blob/master/examples/examples-browser/views/videoFaceTracking.html
+  
+https://github.com/justadudewhohacks/face-api.js/blob/master/examples/examples-browser/views/videoFaceTracking.html
+  
 https://justadudewhohacks.github.io/face-api.js/docs/index.html
   
 ### :high_brightness: Action
 
-Add the code from the Learning section to your index.html 
-
+Add the code from the Learning section to your index.html after the video is ready.
+  
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # withFaceLandmarks() & drawFaceLandmarks
@@ -217,12 +224,9 @@ Extend the code to draw more landmarks on the video.
 
 # How face detection works
 ### :mag_right: Learning
-***** (Now we've shown them an example, it's a good place to go a bit more in depth about how it works. Though remember these are early uni students.)
 
-The most accurate face detector is a``` SSD (Single Shot Multibox Detector)```, which is basically a CNN based on MobileNet V1, with some additional box prediction layers stacked on top of the network( use regular convulations which is slower than depthwise seperable convolution)
-
-***** (I've done some machine learning stuff and even I couldn't tell you what a depthwise seperable convolution is, wondering if the above paragraph maybe goes in the Dive deeper section, with links to solid descriptions on other sites, else maybe delete above paragraph?)
-
+As we understood the basic of models, there are multiple models we can us for face detection. We are using ``` SSD (Single Shot Multibox Detector)``` as you might have noticed that we loaded in ```Load Models``` step.
+  
 The networks return the bounding boxes of each face, with their corresponding scores, e.g. the probability of each bounding box showing a face.
 
 **Face Landmark Detection and Face Alignment**
@@ -235,7 +239,10 @@ face-api.js implements a simple CNN and  returns the 68 point face landmarks of 
 Feed the extracted and aligned face images into the face recognition network. The network has been trained to learn to map the characteristics of a human face to a ```face descriptor``` (a feature vector with 128 values), which is also oftentimes referred to as face embeddings.
 
 ### :books: Dive deeper
-https://justadudewhohacks.github.io/face-api.js/docs/index.html#usage-face-detection-options
+https://justadudewhohacks.github.io/face-api.js/docs/index.html#models-face-detection
+  
+The most accurate face detector is a``` SSD (Single Shot Multibox Detector)```, which is basically a CNN based on MobileNet V1, with some additional box prediction layers stacked on top of the network( use regular convulations which is slower than depthwise seperable convolution)
+https://towardsdatascience.com/understanding-ssd-multibox-real-time-object-detection-in-deep-learning-495ef744fab  
   
 ### :high_brightness: Action
 Continue on to the next section.
@@ -269,9 +276,11 @@ Modify your code adding in ```.withFaceDescriptors()``` and ```drawDetections()`
 
 # Event Listeners
 ### :mag_right: Learning
-
+The addEventListener() method attaches an event handler to the specified element.
+  
 ### :books: Dive deeper
-
+https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+  
 ### :high_brightness: Action
 https://codepen.io/sacah/pen/LYyJBRM?editors=1010
 
@@ -279,9 +288,13 @@ https://codepen.io/sacah/pen/LYyJBRM?editors=1010
 
 # Local storage 
 ### :mag_right: Learning
+The localStorage properties allow to save key/value pairs in a web browser.
+
+The localStorage object stores data with no expiration date. The data will not be deleted when the browser is closed, and will be available the next day, week, or year.
 
 ### :books: Dive deeper
-
+https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
+  
 ### :high_brightness: Action
 https://codepen.io/sacah/pen/yLbxqXz?editors=1010
 
