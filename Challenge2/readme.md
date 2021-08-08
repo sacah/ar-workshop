@@ -31,9 +31,9 @@ Third party APIs are not built into the browser by default, and you generally ha
 
 # setTimeout
 ### :mag_right: Learning
-
+The setTimeout() method calls a function or evaluates an expression after a specified number of milliseconds.
 ### :books: Dive deeper
-
+https://www.w3schools.com/jsreF/met_win_settimeout.asp
 ### :high_brightness: Action
 https://codepen.io/sacah/pen/JjNvemK?editors=1010
 
@@ -84,7 +84,8 @@ function isCameraReady() {
 ```
 
 ### :books: Dive deeper
-
+https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/readyState
+  
 ### :high_brightness: Action
 https://codepen.io/sacah/pen/wvdjQRx
 
@@ -145,8 +146,6 @@ Put above code into correct function, change function to async.
 ### :mag_right: Learning
 Now that we have asynchronous code, it is useful to display a spinner so users know when loading has finished.
 
-### :books: Dive deeper
-
 ### :high_brightness: Action
 ***** (We've already shown them how to get elements, maybe just talk about .style.display = 'block' | 'none' and get them to put it together?)
 ```JS
@@ -170,7 +169,11 @@ faceapi.detectSingleFace returns an object with lots of information, open the De
 Other than in the DevTools Console, you won't notice anything happening in the app at this point, but in the next few sections we will use the information in this object to draw landmarks on a face it detected.
 
 ### :books: Dive deeper
-
+https://justadudewhohacks.github.io/face-api.js/docs/globals.html#detectsingleface
+https://justadudewhohacks.github.io/face-api.js/webcam_face_tracking
+  https://github.com/justadudewhohacks/face-api.js/blob/master/examples/examples-browser/views/videoFaceTracking.html
+https://justadudewhohacks.github.io/face-api.js/docs/index.html
+  
 ### :high_brightness: Action
 
 Add the code from the Learning section to your index.html 
@@ -203,6 +206,8 @@ For that purpose face-api.js implements a simple CNN, which returns the 68 point
 ```
 
 ### :books: Dive deeper
+https://justadudewhohacks.github.io/face-api.js/docs/index.html#models-face-landmark-detection
+  
 
 ### :high_brightness: Action
 
@@ -230,7 +235,8 @@ face-api.js implements a simple CNN and  returns the 68 point face landmarks of 
 Feed the extracted and aligned face images into the face recognition network. The network has been trained to learn to map the characteristics of a human face to a ```face descriptor``` (a feature vector with 128 values), which is also oftentimes referred to as face embeddings.
 
 ### :books: Dive deeper
-
+https://justadudewhohacks.github.io/face-api.js/docs/index.html#usage-face-detection-options
+  
 ### :high_brightness: Action
 Continue on to the next section.
 
@@ -249,6 +255,7 @@ We add the ```.withFaceDescriptior()``` function to our ```detectSingleFace()```
 ***** (Brief on drawDetections)
 
 ### :books: Dive deeper
+https://justadudewhohacks.github.io/face-api.js/docs/index.html#usage-displaying-detection-results
 
 ### :high_brightness: Action
 Modify your code adding in ```.withFaceDescriptors()``` and ```drawDetections()``` to see how it works.
@@ -437,9 +444,14 @@ As its async calls , let's put loader to wait for the response
 
 # Recognise  multiple saved face
 ### :mag_right: Learning
-
+Use ```detectAllFaces``` to detect all faces on video and store it in an array.
+and use  ```forEach()``` method to execute a provided function once for each array element.
+  
 ### :books: Dive deeper
-
+https://github.com/justadudewhohacks/face-api.js/blob/master/examples/examples-browser/views/videoFaceTracking.html
+https://justadudewhohacks.github.io/face-api.js/docs/globals.html#detectallfaces
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
+  
 ### :high_brightness: Action
 
 ```JS
