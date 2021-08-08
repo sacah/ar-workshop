@@ -132,7 +132,7 @@ In another words, the model is the “thing” that is saved after running a mac
   await faceapi.loadFaceLandmarkModel('/face-api/');
   await faceapi.loadFaceRecognitionModel('/face-api/');
 ```
-***** (mention making function async)
+NOTE: ```await``` only works with ```async``` functions
 
 ### :books: Dive deeper
 https://towardsai.net/p/machine-learning/how-to-build-and-train-your-first-neural-network-9a07d020c4bb
@@ -160,7 +160,7 @@ Now that we have asynchronous code, it is useful to display a spinner so users k
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
-# detectSingleFace
+# Detect Single Face - detectSingleFace
 ### :mag_right: Learning
 The networks return the bounding boxes of the face, with the corresponding scores, e.g. the probability of each bounding box showing a face.
 
@@ -189,9 +189,7 @@ Add the code from the Learning section to your index.html after the video is rea
 
 # withFaceLandmarks() & drawFaceLandmarks
 ### :mag_right: Learning
-
-***** (Simplify this paragraph)
-Next, we want to align the bounding boxes, such that we can extract the images centered at the face for each box before passing them to the face recognition network, as this will make face recognition much more accurate!
+After detection, we want to align the bounding boxes, such that we can extract the images centered at the face for each box before passing them to the face recognition network, as this will make face recognition much more accurate!
 For that purpose face-api.js implements a simple CNN, which returns the 68 point face landmarks of a given face image:
 
 ```JS
@@ -222,37 +220,10 @@ Extend the code to draw more landmarks on the video.
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
-# How face detection works
-### :mag_right: Learning
-
-As we understood the basic of models, there are multiple models we can us for face detection. We are using ``` SSD (Single Shot Multibox Detector)``` as you might have noticed that we loaded in ```Load Models``` step.
   
-The networks return the bounding boxes of each face, with their corresponding scores, e.g. the probability of each bounding box showing a face.
-
-**Face Landmark Detection and Face Alignment**
-
-After detection, align the bounding boxes to extract the images centred at the face for each box.
-face-api.js implements a simple CNN and  returns the 68 point face landmarks of a given face image.
-
-**Face Recognition**
-
-Feed the extracted and aligned face images into the face recognition network. The network has been trained to learn to map the characteristics of a human face to a ```face descriptor``` (a feature vector with 128 values), which is also oftentimes referred to as face embeddings.
-
-### :books: Dive deeper
-https://justadudewhohacks.github.io/face-api.js/docs/index.html#models-face-detection
-  
-The most accurate face detector is a``` SSD (Single Shot Multibox Detector)```, which is basically a CNN based on MobileNet V1, with some additional box prediction layers stacked on top of the network( use regular convulations which is slower than depthwise seperable convolution)
-https://towardsdatascience.com/understanding-ssd-multibox-real-time-object-detection-in-deep-learning-495ef744fab  
-  
-### :high_brightness: Action
-Continue on to the next section.
-
-:heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
-
 # withFaceDescriptor()
 ### :mag_right: Learning
 So far our app will recognise the landmarks of a human face in a video feed. What we'd like it to do is be able to apply a name to a face.
-
 To do this, we need to save the FaceDescriptor against a name, then later we can compare faces we detect in the video feed against saved FaceDescriptors and see if any match.
 
 We add the ```.withFaceDescriptior()``` function to our ```detectSingleFace()``` call to retrieve the FaceDescriptor.
@@ -302,15 +273,11 @@ https://codepen.io/sacah/pen/yLbxqXz?editors=1010
 
 # Save face descriptor data
 ### :mag_right: Learning
-***** (Rewrite now we've already covered Event listener and Local storage)
-EventTarget.addEventListener() : The EventTarget method addEventListener() sets up a function that will be called whenever the specified event is delivered to the target.
-localStorage : The localStorage read-only property of the window interface allows you to access a Storage object for the Document's origin; the stored data is saved across browser sessions.
+Putting everything we learned in previous sections. Add Event listener on Add button and store the face descripter data in localStorage. Also make sure you dont save duplicates in same array.
 
 ### :books: Dive deeper
 
 ### :high_brightness: Action
-
-
 ```JS 
     document.getElementById('add').addEventListener('click', addPerson);
     const faces = {};
@@ -457,7 +424,7 @@ As its async calls , let's put loader to wait for the response
 
 # Recognise  multiple saved face
 ### :mag_right: Learning
-Use ```detectAllFaces``` to detect all faces on video and store it in an array.
+Use ```faceapi.detectAllFaces``` to detect all faces on video and store it in an array.
 and use  ```forEach()``` method to execute a provided function once for each array element.
   
 ### :books: Dive deeper
