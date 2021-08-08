@@ -300,8 +300,8 @@ Putting everything we learned in previous sections. Add Event listener on Add bu
 
 #  Add more faces
 ### :mag_right: Learning
-
-### :books: Dive deeper
+Fetch already saved faces data from localStorage, so that it doesn't get reset on window refresh.
+ 
 
 ### :high_brightness: Action
  const faces = JSON.parse(localStorage.getItem('faces') || '{}');
@@ -310,8 +310,9 @@ Putting everything we learned in previous sections. Add Event listener on Add bu
 
 # Make tabs work 
 ### :mag_right: Learning
-
-### :books: Dive deeper
+As you can see we have two tabs in HTML, we want to have different actions on both. Put a global variable to store which tab is active at the moment.
+Add an event listener on click of both tabs to set the value of that global variable.
+You can now put different behaviour in the functions using this global variable. 
 
 ### :high_brightness: Action
 Add person - for adding face 
@@ -350,21 +351,17 @@ function changeTab(ev) {
 
 # Recognise  single  saved face
 ### :mag_right: Learning
-
-### :books: Dive deeper
-
-### :high_brightness: Action
-
-
---move later
-```faceapi.detectAllFaces``` : To detect all face's bounding boxes of an input image/video
-Face-api.js implements multiple face detectors for different usecases.
-
---move later
+ 
+```requestAnimationFrame(callback)```: Tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint. 
 ```How comparison work```
 Face descriptor of each extracted face image and compare them with the face descriptors of the reference data. ```Euclidean distance``` is computed between two face descriptors and judge whether two faces are similar based on a threshold value (for 150 x 150 sized face images 0.6 is a good threshold value)
 
-```requestAnimationFrame(callback)```: Tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint.
+### :books: Dive deeper
+https://github.com/justadudewhohacks/face-api.js/blob/master/examples/examples-browser/views/videoFaceTracking.html
+  
+### :high_brightness: Action
+ When ```Request Paymemt``` is clicked, compare the single detected face on video to the the saved faces data.
+
 As its async calls , let's put loader to wait for the response
 ```JS
   async function setupCanvas() {
