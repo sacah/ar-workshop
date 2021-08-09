@@ -28,6 +28,7 @@ https://developer.mozilla.org/en-US/docs/Web/API
 Third party APIs are not built into the browser by default, and you generally have to grab their code and information from somewhere on the Web. For example: Twitter API, Google Maps API and the one we are using today is ```face.api```, JavaScript API for Face Recognition in the Browser with tensorflow.js (TensorFlow is used to create large-scale neural networks with many layers and mainly used for deep learning or machine learning problems).
 ### :books: Dive deeper
 https://github.com/justadudewhohacks/face-api.js
+
 https://justadudewhohacks.github.io/face-api.js/docs/index.html
 
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
@@ -136,6 +137,7 @@ NOTE: ```await``` only works with ```async``` functions
 
 ### :books: Dive deeper
 https://towardsai.net/p/machine-learning/how-to-build-and-train-your-first-neural-network-9a07d020c4bb
+  
 https://deeplizard.com/learn/video/daovGOlMbT4
   
 ### :high_brightness: Action
@@ -474,7 +476,9 @@ and use  ```forEach()``` method to execute a provided function once for each arr
   
 ### :books: Dive deeper
 https://github.com/justadudewhohacks/face-api.js/blob/master/examples/examples-browser/views/videoFaceTracking.html
+  
 https://justadudewhohacks.github.io/face-api.js/docs/globals.html#detectallfaces
+  
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
   
 ### :high_brightness: Action
@@ -486,7 +490,7 @@ Detect all faces on video and resize results to fit the canvas
         detectedFaceDescripters = faceapi.resizeResults(detectedFaceDescripters,dims);
   }
 ```
- put foreach and compare each face on video with the saved face. Alos diplay multiple names in input field
+ put foreach and compare each face on video with the saved face. Also diplay multiple names in input field
 ```JS
     detectedFaceDescripters.forEach((fd) => {
           const bestMatch = faceMatcher.findBestMatch(fd.descriptor);
