@@ -362,7 +362,55 @@ https://github.com/justadudewhohacks/face-api.js/blob/master/examples/examples-b
 ### :high_brightness: Action
  When ```Request Paymemt``` is clicked, compare the single detected face on video to the the saved faces data.
 
-As its async calls , let's put loader to wait for the response
+ Call an async function in requestAnimationFrame
+```JS
+  if(tab === 'requestPayment' ) {
+        requestAnimationFrame(renderFrame);
+    }
+   async function renderFrame() {
+      await faceID();
+    }
+```
+ Fetch all saves faces from localStorage
+```JS
+  const savedFaceDescriptors = [];
+    if (Object.keys(faces).length) {
+        Object.keys(faces).forEach((face) => {
+          savedFaceDescriptors.push(new faceapi.LabeledFaceDescriptors(face, [new Float32Array(faces[face].descriptors[0])]));
+        });
+    }
+```  
+Get faceDecripter of the face on the video  
+```JS
+let fd =  await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
+```
+  
+Match the face on video with the saved face data and draw the box with saved label
+```JS
+        const maxDescriptorDistance = 0.6;
+        const faceMatcher = new faceapi.FaceMatcher(savedFaceDescriptors, maxDescriptorDistance);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        if(fd){
+          const bestMatch = faceMatcher.findBestMatch(fd.descriptor);
+          const opts = {
+            label: bestMatch.label,
+            lineWidth: 2
+          };
+          const drawBox = new faceapi.draw.DrawBox(fd.alignedRect.box, opts);
+          drawBox.draw(canvas);
+          
+        }
+      }
+```
+  
+display the name in input box
+```JS
+  if(bestMatch.label!='unknown') {
+            document.getElementById('to').value = bestMatch.label;
+          }
+```
+  
+Putting everything together
 ```JS
   async function setupCanvas() {
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
@@ -430,7 +478,32 @@ https://justadudewhohacks.github.io/face-api.js/docs/globals.html#detectallfaces
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
   
 ### :high_brightness: Action
-
+Detect all faces on video and resize results to fit the canvas
+```JS
+  let detectedFaceDescripters = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors();
+  if(detectedFaceDescripters.length) {
+        const dims = faceapi.matchDimensions(canvas, video, true);
+        detectedFaceDescripters = faceapi.resizeResults(detectedFaceDescripters,dims);
+  }
+```
+ put foreach and compare each face on video with the saved face. Alos diplay multiple names in input field
+```JS
+    detectedFaceDescripters.forEach((fd) => {
+          const bestMatch = faceMatcher.findBestMatch(fd.descriptor);
+          const opts = {
+            label: bestMatch.label,
+            lineWidth: 2
+          };
+          const drawBox = new faceapi.draw.DrawBox(fd.alignedRect.box, opts);
+            drawBox.draw(canvas);
+            if (!requestPeople.includes(bestMatch.label) && bestMatch.label!='unknown') requestPeople.push(bestMatch.label);
+            document.getElementById('to').value = requestPeople.join(', ');
+        });
+        hideLoader();
+      }
+```
+  
+Putting all together
 ```JS
    async function faceID() {
       const savedFaceDescriptors = [];
