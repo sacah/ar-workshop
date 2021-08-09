@@ -211,15 +211,28 @@
     async function setupCanvas() {
     if (video.readyState === video.HAVE_ENOUGH_DATA) {
         if(tab === 'addPerson') {
-          context.clearRect(0, 0, canvas.width, canvas.height);
-          singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
-          faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
+          requestAnimationFrame(renderSinglePerson);
         } else if(tab === 'requestPayment' ) {
            requestAnimationFrame(renderFrame);
         }
         hideLoader();
       } else setTimeout(setupCanvas, 100);
     } 
+
+    async function renderSinglePerson() {
+      await singleFaceDetect();
+    }
+
+    async function singleFaceDetect() {
+      singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      if (!singleFaceResultOnLoad) {
+        requestAnimationFrame(renderSinglePerson);
+        return;
+      }
+      faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
+      if (tab === 'addPerson') requestAnimationFrame(renderSinglePerson);
+    }
 
     async function renderFrame() {
       await faceID();
@@ -235,28 +248,30 @@
         });
       }
       
-      let fd =  await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
+      let detectedFaces =  await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors();
 
       if (savedFaceDescriptors.length) {
         const maxDescriptorDistance = 0.6;
         const faceMatcher = new faceapi.FaceMatcher(savedFaceDescriptors, maxDescriptorDistance);
         context.clearRect(0, 0, canvas.width, canvas.height);
-        if(fd){
+        detectedFaces.forEach((fd) => {
           const bestMatch = faceMatcher.findBestMatch(fd.descriptor);
           const opts = {
             label: bestMatch.label,
             lineWidth: 2
           };
-          const drawBox = new faceapi.draw.DrawBox(fd.alignedRect.box, opts);
-          drawBox.draw(canvas);
-          if(bestMatch.label!='unknown') {
-            document.getElementById('to').value = bestMatch.label;
+          if (bestMatch.distance <= 0.5) {
+            const drawBox = new faceapi.draw.DrawBox(fd.alignedRect.box, opts);
+            drawBox.draw(canvas);
+            if (!requestPeople.includes(bestMatch.label)) requestPeople.push(bestMatch.label);
+            document.getElementById('to').value = requestPeople.join(', ');
+          } else {
+            faceapi.draw.drawFaceLandmarks(canvas, fd.landmarks);
           }
-        }
-       
+        });      
         hideLoader();
       }
-      requestAnimationFrame(renderFrame);
+      if (tab === 'requestPayment') requestAnimationFrame(renderFrame);
     }
 
     function addPerson(event) {
@@ -276,10 +291,10 @@
 
     function changeTab(ev) {
       clearTimeout(setupCanvas);
-      if(ev.target.id == 'requestPaymentTab') {
-        tab ='requestPayment';
+      if(ev.target.id === 'requestPaymentTab') {
+        tab = 'requestPayment';
       } else {
-        tab ='addPerson';
+        tab = 'addPerson';
       }
       showLoader();
       setupCanvas();
