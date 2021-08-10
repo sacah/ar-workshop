@@ -232,7 +232,7 @@ We add the ```.withFaceDescriptior()``` function to our ```detectSingleFace()```
 
 ```singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();```
 
-***** (Brief on drawDetections)
+```requestAnimationFrame(callback)```: Tells the browser that you wish to perform an animation and requests that the browser call a specified function to update an animation before the next repaint. 
 
 ### :books: Dive deeper
 https://justadudewhohacks.github.io/face-api.js/docs/index.html#usage-displaying-detection-results
@@ -244,7 +244,26 @@ Modify your code adding in ```.withFaceDescriptors()``` and ```drawDetections()`
   singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
   faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
 ```
-
+```requestAnimationFrame``` is used because we want to detect the face even if you are moving.
+Sometimes if ```singleFaceResultOnLoad``` undefined, we want to call the function multiple times to get the result we need. so put it in a separate async function.
+  
+```JS
+  requestAnimationFrame(renderSinglePerson);
+  
+  async function renderSinglePerson() {
+      await singleFaceDetect();
+    }
+    async function singleFaceDetect() {
+      singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      if (!singleFaceResultOnLoad) {
+        requestAnimationFrame(renderSinglePerson);
+        return;
+      }
+      faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
+      if (tab === 'addPerson') requestAnimationFrame(renderSinglePerson);
+    }
+```
 :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: :heavy_minus_sign: 
 
 # Event Listeners
@@ -408,8 +427,8 @@ Match the face on video with the saved face data and draw the box with saved lab
 display the name in input box
 ```JS
   if(bestMatch.label!='unknown') {
-            document.getElementById('to').value = bestMatch.label;
-          }
+      document.getElementById('to').value = bestMatch.label;
+   }
 ```
   
 Putting everything together
@@ -432,7 +451,7 @@ Putting everything together
       await faceID();
     }
 
-  async function faceID() {
+    async function faceID() {
       const savedFaceDescriptors = [];
       const requestPeople = [];
 
@@ -460,10 +479,9 @@ Putting everything together
             document.getElementById('to').value = bestMatch.label;
           }
         }
-       
         hideLoader();
       }
-      requestAnimationFrame(renderFrame);
+      if (tab === 'requestPayment') requestAnimationFrame(renderFrame);
     }
 ```
 
@@ -543,6 +561,6 @@ Putting all together
         });
         hideLoader();
       }
-      requestAnimationFrame(renderFrame);
+     if (tab === 'requestPayment') requestAnimationFrame(renderFrame);
     }
 ```
