@@ -244,8 +244,9 @@ Modify your code adding in ```.withFaceDescriptors()``` and ```drawDetections()`
   singleFaceResultOnLoad = await faceapi.detectSingleFace(video).withFaceLandmarks().withFaceDescriptor();
   faceapi.draw.drawDetections(canvas, singleFaceResultOnLoad);
 ```
-```requestAnimationFrame``` is used because we want to detect the face even if you are moving.
-Sometimes if ```singleFaceResultOnLoad``` undefined, we want to call the function multiple times to get the result we need. so put it in a separate async function.
+```requestAnimationFrame``` is used because we want to continually detect the face even if it's moving.
+
+Sometimes ```singleFaceResultOnLoad``` may be undefined, if this happens we don't want to call ```drawDetections``` because it will throw a JavaScript error. We check if it's undefined, and loop ```renderSinglePerson()``` again.
   
 ```JS
   requestAnimationFrame(renderSinglePerson);
